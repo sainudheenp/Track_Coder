@@ -4,17 +4,6 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.service import Service as FirefoxService
 import time
 
-import os
-
-
-
-
-user=os.getenv("userEmail")
-print(user)
-
-
-
-
 
 
 
@@ -35,7 +24,13 @@ time.sleep(10)
 # get fields
 userName_field =driver.find_element(By.NAME, "current-email")
 password_field =driver.find_element(By.NAME, "current-password")
+signIn_btn = driver.find_element(By.CLASS , "signIn")
 
 
-#
+#entering inot fields
+userName_field.send_keys("sainudheenzain313@gmail.com")
+password_field.send_keys("")
+
+signIn_btn.click()
+
 
