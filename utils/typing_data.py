@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.firefox.service import Service as FirefoxService
+from selenium.webdriver.firefox.service import Service as Service
 from selenium.webdriver.firefox.options import Options
 import time
 
@@ -19,9 +19,15 @@ options.add_argument('--no-sandbox')
 
 
 # driver path
-geckodriver_path = './driver/geckodriver'
-service =FirefoxService(geckodriver_path)
-driver = webdriver.Firefox(service=service, options=options)  
+# geckodriver_path = './driver/geckodriver'
+# service =FirefoxService(geckodriver_path)
+
+# driver = webdriver.Firefox(service=service, options=options)  
+
+
+service = Service('./driver/geckodriver')
+driver = webdriver.Firefox(service=service)
+
 
 
 # function for logging into monkeytyping.com
