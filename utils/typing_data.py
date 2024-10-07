@@ -2,16 +2,26 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.service import Service as FirefoxService
+from selenium.webdriver.firefox.options import Options
 import time
 
 
 
 
-# driver path
-geckodriver_path = '../driver/geckodriver'
-service =service(geckodriver_path)
-driver= webdriver.Firefox(service=service)
+# incognito
 
+options = Options()
+options.add_argument('-private')
+options.add_argument('--no-sandbox')
+
+
+
+
+
+# driver path
+geckodriver_path = './driver/geckodriver'
+service =FirefoxService(geckodriver_path)
+driver = webdriver.Firefox(service=service, options=options)  
 
 
 # function for logging into monkeytyping.com
