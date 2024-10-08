@@ -5,48 +5,66 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time
+from datetime import datetime, timedelta
 
-# Set up incognito mode
+
 options = Options()
 options.add_argument('-private')
 options.add_argument('--no-sandbox')
 
-# Driver path
 geckodriver_path = './driver/geckodriver'
 service = FirefoxService(geckodriver_path)
 
-# Initialize WebDriver
 driver = webdriver.Firefox(service=service, options=options)
 
 try:
-    # Navigate to the login page
-    driver.get("https://monkeytype.com/account")
-    
-    # Wait for the elements to load
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "current-email")))
-    
-    # Get fields
-    userName_field = driver.find_element(By.NAME, "current-email")
-    password_field = driver.find_element(By.NAME, "current-password")
-    signIn_btn = driver.find_element(By.CLASS_NAME, "signIn")
-    
-    # Entering into fields
-    userName_field.send_keys("sainudheenzain313@gmail.com")
-    password_field.send_keys("")  # Make sure to enter your password here
+    driver.get("https://app.software.com/dashboard/components/active_code_time_graph")
+
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "email")))
+
+    userName_field = driver.find_element(By.ID, "email")
+    password_field = driver.find_element(By.ID, "password")
+    signIn_btn = driver.find_element(By.CLASS_NAME, "btn-primary")
+
+    userName_field.send_keys("emal")
+    password_field.send_keys("psd")
     signIn_btn.click()
 
-    # Wait for the result page to load
-    time.sleep(5)  # You can adjust this or replace it with an explicit wait
 
-    # Check for login status
-    if "dashboard" in driver.current_url:  # Adjust this condition based on the expected URL
-        print("Login successful! Current URL:", driver.current_url)
-    else:
-        print("Login failed. Current URL:", driver.current_url)
-    
-except Exception as e:
-    print(f"An error occurred: {e}")
+    today = datetime.now()
+    yesterday = today - timedelta(days=1)
+    yesterday_day = yesterday.strftime('%A')
+    day_map = {
+    'Monday': 'Mon',
+    'Tuesday': 'Tue',
+    'Wednesday': 'Wed',
+    'Thursday': 'Thu',
+    'Friday': 'Fri',
+    'Saturday': 'Sat',
+    'Sunday': 'Sun'
+    }
+    yesterday_abbr = day_map[yesterday_day]
+
+    xpath = f'//*[contains(@aria-label, "{yesterday_abbr},")]'
+    element = driver.find_element(By.XPATH, xpath)
+    aria_label = element.get_attribute('aria-label')
+    site_act = aria_label.split(",")[1].strip().split()[0]
+    site_act_clean = site_act.rstrip('.')
+    active_code_time =round(float(site_act_clean),2)
+
+    hours=int(active_code_time)
+    ft_minutes= active_code_time - hours
+    minutes=int(ft_minutes*60)
+    print(f"Yesterday's ({yesterday_abbr}) Active Code Time: {hours:01}:{minutes:02}" )
+
+
+
+
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[contains(@aria-label, "Active Code Time")]')))
+
+    element = driver.find_element(By.XPATH, '//*[contains(@aria-label, "Active Code Time")]')
+
+    print(element.text)
 
 finally:
-    driver.quit()  # Ensure the driver closes at the end
+    driver.quit()
