@@ -1,2 +1,2 @@
 dotenv
-selenium
+selenium===4.23.0
