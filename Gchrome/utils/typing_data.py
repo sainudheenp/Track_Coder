@@ -31,9 +31,10 @@ driver = webdriver.Chrome(service=service , options=options)
 
 
 try:
-    driver.get("https://monkeytype.com/login")
+    driver.get("https://monkeytype.com/account")
 
-    WebDriverWait(driver ,10).until(EC.presence_of_element_located(By.NAME,"rejectAll"))
+    WebDriverWait(driver ,10).until(EC.presence_of_element_located((By.CLASS_NAME,"rejectAll")))
+    # time.sleep(10)
     try:
         dd = driver.find_element(By.CLASS_NAME, "acceptAll").click()
         print("Cookie popup accepted.")
@@ -47,8 +48,8 @@ try:
     userName_field.send_keys(os.getenv("userEmail_monkey"))
     password_field.send_keys(os.getenv("userEmail_password"))
     signIn_btn.click()
-
-    wpm_value = driver.find_element(By.CSS_SELECTOR, ".averageWpm .val")
+    print("hey")
+    wpm_value = driver.find_element(By.CSS_SELECTOR, ".group.averageWpm .val")
     ssf =wpm_value.text
     print(f"avg wpm : {ssf}")
 
