@@ -24,6 +24,7 @@ driver = webdriver.Chrome(service=service, options=options)
 try:
     driver.get("https://app.software.com/dashboard/components/active_code_time_graph")
 
+
     # Wait for the login form to be visible
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "email")))
 
