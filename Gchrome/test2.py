@@ -5,8 +5,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime, timedelta
-
-from dotenv import load_dotenv , dotenv_values
+import os
+from dotenv import load_dotenv
 load_dotenv()
 
 
@@ -39,8 +39,8 @@ try:
     password_field = driver.find_element(By.ID, "password")
     signIn_btn = driver.find_element(By.CLASS_NAME, "btn-primary")
 
-    userName_field.send_keys("@gmail.com")
-    password_field.send_keys("@123")
+    userName_field.send_keys(os.getenv("userEmail_code_time"))
+    password_field.send_keys(os.getenv("password_code_time"))
     signIn_btn.click()
 
     # Get yesterday's date and its abbreviation
