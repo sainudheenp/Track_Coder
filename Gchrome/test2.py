@@ -83,14 +83,13 @@ try:
     ct_hours = int(code_time)
     minutes_ct = int((code_time - ct_hours) * 60)
 
-    print(f"Yesterday's ({yesterday_abbr}) Code Time: {ct_hours:01}:{minutes_ct:02}")
 
     # Calculate Total Time (Active Code Time + Code Time)
     total_minutes = (hours_active * 60 + minutes_active) + (ct_hours * 60 + minutes_ct)
     total_hours = total_minutes // 60
     remaining_minutes = total_minutes % 60
+    print(f"Yesterday's ({yesterday_abbr}) Code Time: {total_hours:01}:{remaining_minutes:02}")
 
-    print(f"Total Time for Yesterday ({yesterday_abbr}): {total_hours:01}:{remaining_minutes:02}")
 
 except Exception as e:
     print(f"An error occurred: {e}")
