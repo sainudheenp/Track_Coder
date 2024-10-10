@@ -6,6 +6,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime, timedelta
 
+from dotenv import load_dotenv , dotenv_values
+load_dotenv()
+
+
+
+
 # Set up Chrome options
 options = Options()
 options.add_argument('--incognito')  # Use incognito mode for Chrome

@@ -1,8 +1,7 @@
-from utils.code_time import *
-from utils.typing_data import *
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
-def main():
-    print("Hey Zainn")
-
-    # try :
+print(os.getenv("userEmail_monkey"))
+print(os.getenv("password_monkey"))
