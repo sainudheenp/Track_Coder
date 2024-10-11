@@ -16,7 +16,7 @@ options = Options()
 options.add_argument('--incognito')
 options.add_argument('--no-sandbox')
 options.add_argument('--disable-dev-shm-usage')
-options.add_argument("--headless")
+# options.add_argument("--headless")
 
 # Define the path to the Chrome driver
 service = Service('./Gchrome/driver/chromedriver')
@@ -26,7 +26,7 @@ def get_typing_data():
     try:
             driver.get("https://monkeytype.com/account")
 
-            WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "acceptAll")))
+            WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "rejectAll")))
 
             driver.find_element(By.CLASS_NAME, "acceptAll").click()
 
@@ -43,14 +43,15 @@ def get_typing_data():
 
 
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".group.averageWpm .val")))
+
             time.sleep(3)
             wpm_value = driver.find_element(By.CSS_SELECTOR, ".group.averageWpm .val")
             avg_wpm = wpm_value.text
-            print(f"Typing  : {avg_wpm}wpm")
+            print(f"Typing  : {avg_wpm}")
 
     except Exception as error:
         print(f"An error occurred: {error}")
-        get_typing_data()
+        
 
     finally:
         driver.quit()
