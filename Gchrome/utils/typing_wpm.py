@@ -43,10 +43,8 @@ def get_typing_data():
 
 
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".group.averageWpm .val")))
-
+            time.sleep(3)
             wpm_value = driver.find_element(By.CSS_SELECTOR, ".group.averageWpm .val")
-            time.sleep(4)
-
             avg_wpm = wpm_value.text
             print(f"Typing  : {avg_wpm}wpm")
 
