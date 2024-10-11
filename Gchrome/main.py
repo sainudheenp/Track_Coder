@@ -1,14 +1,14 @@
-from utils.code_time import get_lines_of_code
-from utils.typing_data import get_typing_data
-import utils.lines_of_code 
+from utils.code_time import get_code_time
+from utils.typing_wpm import get_typing_data
+from utils.lines_of_code import *
 
 
 def main():
     try:
         get_typing_data()
-        get_lines_of_code()
+        get_code_time()
 
     except Exception as e :
         print("error" , e)
 
-        
+
