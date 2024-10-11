@@ -65,7 +65,9 @@ def get_lines_of_code():
 
         hours_active = int(active_code_time)
         minutes_active = int((active_code_time - hours_active) * 60)
-        print(f"Yesterday's ({yesterday_abbr}) Active Code Time: {hours_active:01}:{minutes_active:02}")
+        # print(f"Yesterday's ({yesterday_abbr}) ACT: {hours_active:01}:{minutes_active:02}")
+        print(f"ACT: {hours_active:01}:{minutes_active:02}")
+
 
         # Find Code Time
         xpath_code_time = f'//*[contains(@aria-label, "{yesterday_abbr},") and contains(@aria-label, "Code Time")]'
@@ -83,7 +85,7 @@ def get_lines_of_code():
         total_minutes = (hours_active * 60 + minutes_active) + (ct_hours * 60 + minutes_ct)
         total_hours = total_minutes // 60
         remaining_minutes = total_minutes % 60
-        print(f"Yesterday's ({yesterday_abbr}) Code Time: {total_hours:01}:{remaining_minutes:02}")
+        print(f"CT: {total_hours:01}:{remaining_minutes:02}")
 
     except Exception as e:
         print(f"An error occurred: {e}")
