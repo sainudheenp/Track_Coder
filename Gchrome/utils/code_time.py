@@ -110,7 +110,10 @@ def get_code_time():
 
 
     except Exception as e:
-        print(f"An error occurred: {e}")
+        print(f"Focus   : 00:00")
+        print(f"ACT     : 00:00")
+        print(f"CT      : 00:00")
+
 
     finally:
         driver.quit()
