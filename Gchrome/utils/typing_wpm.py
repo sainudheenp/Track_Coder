@@ -16,7 +16,7 @@ options = Options()
 options.add_argument('--incognito')
 options.add_argument('--no-sandbox')
 options.add_argument('--disable-dev-shm-usage')
-# options.add_argument("--headless")
+options.add_argument("--headless")
 
 # Define the path to the Chrome driver
 service = Service('./Gchrome/driver/chromedriver')
@@ -51,7 +51,7 @@ def get_typing_data():
 
     except Exception as error:
         print(f"An error occurred: {error}")
-        
+
 
     finally:
         driver.quit()

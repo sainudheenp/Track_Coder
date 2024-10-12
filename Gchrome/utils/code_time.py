@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 import os
 from dotenv import load_dotenv
 load_dotenv()
+import time
 
 def get_code_time():
     # Set up Chrome options
@@ -15,7 +16,7 @@ def get_code_time():
     options.add_argument('--incognito')  # Use incognito mode for Chrome
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
-    options.add_argument('--headless')  # Run in headless mode if GUI isn't needed
+    # options.add_argument('--headless')  # Run in headless mode if GUI isn't needed
 
     # Path to ChromeDriver
     chromedriver_path = './Gchrome/driver/chromedriver'
@@ -53,7 +54,7 @@ def get_code_time():
             'Sunday': 'Sun'
         }
         yesterday_abbr = day_map[yesterday_day]
-
+        time.sleep(3)
         # Find Active Code Time using the abbreviation for yesterday
         xpath_active = f'//*[contains(@aria-label, "{yesterday_abbr},") and contains(@aria-label, "Active Code Time")]'
         element_active = driver.find_element(By.XPATH, xpath_active)
