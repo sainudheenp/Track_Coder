@@ -10,6 +10,11 @@ from dotenv import load_dotenv
 load_dotenv()
 import time
 
+
+Focus = "00:00"
+ACT = "00:00"
+CT = "00:00"
+
 def get_code_time():
     # Set up Chrome options
     options = Options()
@@ -54,6 +59,14 @@ def get_code_time():
             'Sunday': 'Sun'
         }
         yesterday_abbr = day_map[yesterday_day]
+
+        Focus = "00:00"
+        ACT = "00:00"
+        CT = "00:00"
+
+
+
+
         time.sleep(3)
         # Find Active Code Time using the abbreviation for yesterday
         xpath_active = f'//*[contains(@aria-label, "{yesterday_abbr},") and contains(@aria-label, "Active Code Time")]'
@@ -98,27 +111,39 @@ def get_code_time():
         fc_minutes = fc_total_minutes % 60
 
 
+        Focus=f"{fc_hours:01}:{fc_minutes:02}"
+        ACT=f"{hours_active:01}:{minutes_active:02}"
+        CT=f"{total_hours:01}:{remaining_minutes:02}"
+
+
 
 
         #print values
 
-        print(f"Focus   : {fc_hours:01}:{fc_minutes:02}")
-        print(f"ACT     : {hours_active:01}:{minutes_active:02}")
-        print(f"CT      : {total_hours:01}:{remaining_minutes:02}")
+        print(f"Focus   : {Focus}")
+        print(f"ACT     : {ACT}")
+        print(f"CT      : {CT}")
 
 
 
 
     except Exception as e:
-        print(f"Focus   : 00:00")
-        print(f"ACT     : 00:00")
-        print(f"CT      : 00:00")
+        # print(f"Focus   : 00:00")
+        # print(f"ACT     : 00:00")
+        # print(f"CT      : 00:00")
+
+        # print(f"Focus   : {Focus}")
+        # print(f"ACT     : {ACT}")
+        # print(f"CT      : {CT}")
+        time.sleep(1)
 
 
     finally:
         driver.quit()
 
-get_code_time()
+    return Focus , ACT ,CT
+
+# get_code_time()
 
 
 

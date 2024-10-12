@@ -8,17 +8,14 @@ import time
 import os
 from dotenv import load_dotenv
 
-# Load environment variables
 load_dotenv()
 
-# Setup Chrome options for headless/incognito mode
 options = Options()
 options.add_argument('--incognito')
 options.add_argument('--no-sandbox')
 options.add_argument('--disable-dev-shm-usage')
 options.add_argument("--headless")
 
-# Define the path to the Chrome driver
 service = Service('./Gchrome/driver/chromedriver')
 driver = webdriver.Chrome(service=service, options=options)
 
@@ -55,6 +52,7 @@ def get_typing_data():
 
     finally:
         driver.quit()
+    return avg_wpm
 
 
 get_typing_data()
