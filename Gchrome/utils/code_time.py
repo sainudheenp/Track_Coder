@@ -16,7 +16,7 @@ def get_code_time():
     options.add_argument('--incognito')  # Use incognito mode for Chrome
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
-    # options.add_argument('--headless')  # Run in headless mode if GUI isn't needed
+    options.add_argument('--headless')  # Run in headless mode if GUI isn't needed
 
     # Path to ChromeDriver
     chromedriver_path = './Gchrome/driver/chromedriver'
