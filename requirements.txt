@@ -1,0 +1,11 @@
+python-dotenv
+
+selenium == 4.23.0
+
+openpyxl
+
+pandas
+
+
+# join &pass time
+# if ct , wpm then open and write excel
