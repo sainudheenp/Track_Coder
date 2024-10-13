@@ -1,25 +1,17 @@
-import openpyxl
 import os
-import datetime
+import platform
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from utils.get_driver import get_driver
+# def get_driver():
+#     # Get the ChromeDriver regardless of the OS
+#     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+#     return driver
 
-date = datetime.date.today()
 
-Xl_path = os.path.expanduser("~/TrackCoder/trackcoder.xlsx")
-
-os.makedirs(os.path.dirname(Xl_path), exist_ok=True)
-
-if os.path.exists(Xl_path):
-    workbook = openpyxl.load_workbook(Xl_path)
-    sheet = workbook.active
-else:
-    workbook = openpyxl.Workbook()
-    sheet = workbook.active
-    sheet.append(["Date", "Focus", "Wpm", "Code Time", "Active Code Time"])
-new_data = [
-    [date, "1:30", "29", "7:30", "3:30"]
-]
-
-for row in new_data:
-    sheet.append(row)
-workbook.save(Xl_path)  
-print("Data added successfully!")
+# Example usage
+if __name__ == "__main__":
+    driver = get_driver()
+    driver.get("https://www.example.com")
+    print(driver.title)  # Print the title of the page
+    driver.quit()  # Close the browser

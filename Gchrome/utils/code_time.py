@@ -9,6 +9,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 import time
+from get_driver import get_driver
 
 
 Focus = "00:00"
@@ -16,16 +17,18 @@ ACT = "00:00"
 CT = "00:00"
 
 def get_code_time():
-    options = Options()
-    options.add_argument('--incognito')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
-    options.add_argument('--headless')
+    # options = Options()
+    # options.add_argument('--incognito')
+    # options.add_argument('--no-sandbox')
+    # options.add_argument('--disable-dev-shm-usage')
+    # options.add_argument('--headless')
 
-    chromedriver_path = './Gchrome/driver/chromedriver'
-    service = ChromeService(chromedriver_path)
+    # chromedriver_path = './Gchrome/driver/chromedriver'
+    # service = ChromeService(chromedriver_path)
 
-    driver = webdriver.Chrome(service=service, options=options)
+    # driver = webdriver.Chrome(service=service, options=options)
+    
+    driver = get_driver()
 
     try:
         driver.get("https://app.software.com/dashboard/components/active_code_time_graph")

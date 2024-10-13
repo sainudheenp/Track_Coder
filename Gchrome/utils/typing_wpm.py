@@ -7,6 +7,8 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 import os
 from dotenv import load_dotenv
+from get_driver import get_driver
+
 
 avg_wpm = 30
 
@@ -18,8 +20,9 @@ options.add_argument('--no-sandbox')
 options.add_argument('--disable-dev-shm-usage')
 options.add_argument("--headless")
 
-service = Service('./Gchrome/driver/chromedriver')
-driver = webdriver.Chrome(service=service, options=options)
+# service = Service('./Gchrome/driver/chromedriver')
+# driver = webdriver.Chrome(service=service, options=options)
+driver =  get_driver()
 
 def get_wpm():
     try:
@@ -66,4 +69,4 @@ def get_wpm():
 # if (check):
 #     print(check)
 # else :
-# get_wpm()
+get_wpm()
