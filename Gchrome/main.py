@@ -1,10 +1,30 @@
 from utils.code_time import get_code_time
+from utils.typing_wpm import get_typing_data
+from utils.lines_of_code import loc
 
 def main():
     try:
-        print("Starting get_code_time() function")  # Add this
+        print("Starting....")
+
+        Wpm = get_typing_data()
+
         Focus, ACT, CT = get_code_time()
-        print(f"Results - Focus: {Focus}, ACT: {ACT}, CT: {CT}")
+
+        html , css , js, total = loc()
+
+
+
+
+
+
+        print(f"Typing  : {Wpm}")
+        print(f"Focus   : {Focus}")
+        print(f"ACT     : {ACT}")
+        print(f"CT      : {CT}")
+        print(f"HTML    : {html}")
+        print(f"CSS     : {css}")
+        print(f"JS      : {js}")
+        print(f"TOTAL   : {total}")
     except Exception as e:
         print("Error:", e)
 

@@ -41,10 +41,10 @@ def get_typing_data():
 
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".group.averageWpm .val")))
 
-            time.sleep(3)
+            time.sleep(5)
             wpm_value = driver.find_element(By.CSS_SELECTOR, ".group.averageWpm .val")
             avg_wpm = wpm_value.text
-            print(f"Typing  : {avg_wpm}")
+            # print(f"Typing  : {avg_wpm}")
 
     except Exception as error:
         print(f"An error occurred: {error}")
@@ -55,7 +55,7 @@ def get_typing_data():
     return avg_wpm
 
 
-get_typing_data()
+
 
 # check = get_typing_data()
 # if (check):
