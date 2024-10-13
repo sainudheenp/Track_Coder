@@ -10,7 +10,6 @@ from dotenv import load_dotenv
 
 avg_wpm = 30
 
-
 load_dotenv()
 
 options = Options()
@@ -22,7 +21,7 @@ options.add_argument("--headless")
 service = Service('./Gchrome/driver/chromedriver')
 driver = webdriver.Chrome(service=service, options=options)
 
-def get_typing_data():
+def get_wpm():
     try:
             driver.get("https://monkeytype.com/account")
 
@@ -45,17 +44,20 @@ def get_typing_data():
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".group.averageWpm .val")))
 
             time.sleep(5)
+
             wpm_value = driver.find_element(By.CSS_SELECTOR, ".group.averageWpm .val")
             avg_wpm = wpm_value.text
             # print(f"Typing  : {avg_wpm}")
+            return avg_wpm
 
     except Exception as error:
         print(f"An error occurred: {error}")
+        get_wpm()
 
 
     finally:
         driver.quit()
-    return avg_wpm
+
 
 
 
@@ -64,4 +66,4 @@ def get_typing_data():
 # if (check):
 #     print(check)
 # else :
-#      get_typing_data()
+# get_wpm()
