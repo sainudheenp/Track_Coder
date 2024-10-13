@@ -76,6 +76,7 @@ def get_code_time():
         # Extract Active Code Time
         site_act = aria_label_active.split(",")[1].strip().split()[0]
         active_code_time = round(float(site_act.rstrip('.')), 2)
+        print(f'active codee : {active_code_time}')
 
         hours_active = int(active_code_time)
         minutes_active = int((active_code_time - hours_active) * 60)
@@ -114,7 +115,7 @@ def get_code_time():
         Focus=f"{fc_hours:01}:{fc_minutes:02}"
         ACT=f"{hours_active:01}:{minutes_active:02}"
         CT=f"{total_hours:01}:{remaining_minutes:02}"
-
+        print(f"{fc_hours:01}:{fc_minutes:02}")
 
 
 

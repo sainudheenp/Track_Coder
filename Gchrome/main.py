@@ -1,35 +1,12 @@
 from utils.code_time import get_code_time
-# from utils.typing_wpm import get_typing_data
-# from utils.lines_of_code import *
-# from utils.xl_rw import xl_rw
-
-
-# List of utils files
-# util_files = [
-#     "utils.typing_wpm",
-#     "utils.code_time",
-#     "utils.lines_of_code",
-#     "utils.xl_rw"
-# ]
-
-# for util_file in util_files:
-#     try:
-#         module = __import__(util_file, fromlist=['*'])
-#         print(module)
-#     except Exception as e:
-#         print("Something Went Wrong!" ,e)
-
-
-
 
 def main():
     try:
+        print("Starting get_code_time() function")  # Add this
+        Focus, ACT, CT = get_code_time()
+        print(f"Results - Focus: {Focus}, ACT: {ACT}, CT: {CT}")
+    except Exception as e:
+        print("Error:", e)
 
-        Focus , ACT , CT = get_code_time()
-        print(f"{Focus} , {ACT} ,{CT}")
-
-
-    except Exception as e :
-        print("error" , e)
-
-
+# if __name__ == "__main__":
+main()
