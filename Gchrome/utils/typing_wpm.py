@@ -8,6 +8,9 @@ import time
 import os
 from dotenv import load_dotenv
 
+avg_wpm = 30
+
+
 load_dotenv()
 
 options = Options()

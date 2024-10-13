@@ -2,7 +2,7 @@ import openpyxl
 import os
 import datetime
 
-def xl_rw():
+def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL):
     try:
             date = datetime.date.today()
 
@@ -16,10 +16,10 @@ def xl_rw():
             else:
                 workbook = openpyxl.Workbook()
                 sheet = workbook.active
-                sheet.append(["Date", "Focus", "Wpm", "CT", "ACT"])
+                sheet.append(["Date", "Focus", "Wpm", "CT", "ACT" ,"HTML" , "CSS","JS","Total"])
 
             new_data = [
-            [date, "1:30", "29", "7:30", "3:30"]
+            [date, Focus, Wpm, CT, ACT, HTML , CSS , JS , TOTAL]
             ]
 
             for row in new_data:
@@ -30,7 +30,6 @@ def xl_rw():
     except Exception as e:
             print("Error",e)
 
-xl_rw()
-
+# xl_rw()
 
 

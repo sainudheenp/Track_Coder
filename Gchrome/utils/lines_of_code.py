@@ -22,7 +22,7 @@ def loc():
         css = last_lines["lines_of_code"]["css"]
         #js = last_lines["lines_of_code"]["js"]
         # total = last_lines["lines_of_code"]["total"]
-        total= html + css
+        total= html + css +js
 
         return html , css , js , total
     # print(f"HTML    : {html}")
