@@ -6,6 +6,7 @@ openpyxl
 
 pandas
 
+webdriver-manager
 
 # join &pass time
 # if ct , wpm then open and write excel
