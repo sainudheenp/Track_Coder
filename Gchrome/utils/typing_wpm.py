@@ -1,4 +1,4 @@
-from selenium import webdriver
+# from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 import os
 from dotenv import load_dotenv
-from get_driver import get_driver
+from utils.get_driver import get_driver
 
 
 avg_wpm = 30
@@ -69,4 +69,4 @@ def get_wpm():
 # if (check):
 #     print(check)
 # else :
-get_wpm()
+# get_wpm()

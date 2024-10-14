@@ -9,7 +9,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 import time
-from get_driver import get_driver
+from utils.get_driver import get_driver
 
 
 Focus = "00:00"
@@ -31,7 +31,9 @@ def get_code_time():
     driver = get_driver()
 
     try:
-        driver.get("https://app.software.com/dashboard/components/active_code_time_graph")
+        # driver.get("https://app.software.com/dashboard/components/active_code_time_graph")
+        driver.get("https://app.software.com/code_time?week_of=2024-10-07")
+
 
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "email")))
 
@@ -126,13 +128,13 @@ def get_code_time():
 
     except Exception as e:
         # print(f"Focus   : 00:00")
-        # print(f"ACT     : 00:00")
+        print("code time err")
         # print(f"CT      : 00:00")
 
         # print(f"Focus   : {Focus}")
         # print(f"ACT     : {ACT}")
         # print(f"CT      : {CT}")
-        time.sleep(1)
+        
 
 
     finally:
