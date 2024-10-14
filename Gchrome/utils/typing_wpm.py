@@ -8,6 +8,7 @@ import time
 import os
 from dotenv import load_dotenv
 from utils.get_driver import get_driver
+from .get_driver import get_driver
 
 
 avg_wpm = 30
@@ -50,7 +51,10 @@ def get_wpm():
 
             wpm_value = driver.find_element(By.CSS_SELECTOR, ".group.averageWpm .val")
             avg_wpm = wpm_value.text
-            # print(f"Typing  : {avg_wpm}")
+            print(f"Typing  d: '{avg_wpm}'")
+            if avg_wpm == '':
+                        avg_wpm = 35
+
             return avg_wpm
 
     except Exception as error:

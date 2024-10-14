@@ -11,5 +11,6 @@ def get_driver():
     options.add_argument("--headless")
 
     # Pass the options here
+    print("Driver installing...")
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
     return driver

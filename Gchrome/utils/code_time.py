@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 load_dotenv()
 import time
 from utils.get_driver import get_driver
+from .get_driver import get_driver
 
 
 Focus = "00:00"
@@ -27,7 +28,7 @@ def get_code_time():
     # service = ChromeService(chromedriver_path)
 
     # driver = webdriver.Chrome(service=service, options=options)
-    
+
     driver = get_driver()
 
     try:
@@ -134,7 +135,7 @@ def get_code_time():
         # print(f"Focus   : {Focus}")
         # print(f"ACT     : {ACT}")
         # print(f"CT      : {CT}")
-        
+
 
 
     finally:
