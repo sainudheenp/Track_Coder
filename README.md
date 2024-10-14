@@ -18,9 +18,8 @@ For Local Setup:
     OpenPyXL 
     Dotenv 
     Google Chrome
-    VSCode Extensions for tracking lines of code (TrackMe)
-        Ensure the VSCode extensions for tracking HTML, CSS, and JavaScript lines are installed.
-
+    VSCode Extensions (TrackMe , Codetime)
+        
 For Docker Setup:
 
     Docker (installed and running on the system)
