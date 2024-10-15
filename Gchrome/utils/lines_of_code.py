@@ -37,7 +37,7 @@ def loc():
 
     except Exception as e:
         print(f"Error: {e}")
-        return None, None, None, None
+        return None, None, None, None , e
 
 # Example usage
 html, css, js, total = loc()
