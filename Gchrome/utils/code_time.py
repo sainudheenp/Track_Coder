@@ -30,10 +30,16 @@ def get_code_time():
     # driver = webdriver.Chrome(service=service, options=options)
 
     driver = get_driver()
+    today = datetime.now()
+    yesterday = today - timedelta(days=1)
+    yesterday_day = yesterday.strftime('%A')
+    yesterday_url = yesterday.strftime("%Y-%m-%d")
 
     try:
         # driver.get("https://app.software.com/dashboard/components/active_code_time_graph")
-        driver.get("https://app.software.com/code_time?week_of=2024-10-07")
+        # driver.get("https://app.software.com/code_time?week_of=2024-10-07")
+        driver.get(f"https://app.software.com/code_time?week_of={yesterday_url}")
+
 
 
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "email")))
@@ -46,9 +52,7 @@ def get_code_time():
         password_field.send_keys(os.getenv("password_code_time"))
         signIn_btn.click()
 
-        today = datetime.now()
-        yesterday = today - timedelta(days=1)
-        yesterday_day = yesterday.strftime('%A')
+
         day_map = {
             'Monday': 'Mon',
             'Tuesday': 'Tue',
