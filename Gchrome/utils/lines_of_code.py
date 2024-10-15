@@ -24,24 +24,24 @@ def loc():
             last_day = list(json_data.keys())[-1]
             last_lines = json_data[last_day]
 
-            # Extract lines of code
-            html = last_lines["lines_of_code"]["html"]
-            css = last_lines["lines_of_code"]["css"]
-            js = last_lines["lines_of_code"]["javascript"]  # Uncomment to get JS lines
 
-            # Calculate total
-            total = html + css + js
+        html = last_lines["lines_of_code"]["html"]
+        css = last_lines["lines_of_code"]["css"]
+        #js = last_lines["lines_of_code"]["js"]
+        # total = last_lines["lines_of_code"]["total"]
+        total= html + css +js
 
-            # Return the values
-            return html, css, js, total
+        return html , css , js , total
+    # print(f"HTML    : {html}")
+    # print(f"CSS     : {css}")
+    # print(f"JS      : {js}")
+    # print(f"TOTAL   : {total}")
+ except Exception as e:
+    print(e)
 
-    except Exception as e:
-        print(f"Error: {e}")
-        return None, None, None, None
 
-# Example usage
-html, css, js, total = loc()
-print(f"HTML    : {html}")
-print(f"CSS     : {css}")
-print(f"JS      : {js}")
-print(f"TOTAL   : {total}")
+
+
+
+
+
