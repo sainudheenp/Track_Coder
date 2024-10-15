@@ -1,40 +1,47 @@
 import json
 import os
-import datetime
+import base64
 
-file_path = os.path.expanduser("~/TrackMe/daily-progress-tracker.json")
 
-html = 0
-css = 0
-js =0
+
+
+# Path to the Base64 encoded JSON file
+file_path = os.path.expanduser("~/bin/TrackMe/daily-progress-tracker.json.b64")
 
 def loc():
- try:
-    with open(file_path) as json_file:
+    try:
+        with open(file_path, "r") as enc_json_file:
+            # Read the Base64 encoded file content
+            encoded_content = enc_json_file.read()
 
-        json_data = json.load(json_file)
+            # Decode the Base64 string
+            decoded_content = base64.b64decode(encoded_content).decode('utf-8')
 
-        last_day = list(json_data.keys())[-1]
-        last_lines = json_data[last_day]
+            # Load the decoded content as JSON
+            json_data = json.loads(decoded_content)
 
+            # Get the last day entry in the JSON
+            last_day = list(json_data.keys())[-1]
+            last_lines = json_data[last_day]
 
-        html = last_lines["lines_of_code"]["html"]
-        css = last_lines["lines_of_code"]["css"]
-        #js = last_lines["lines_of_code"]["js"]
-        # total = last_lines["lines_of_code"]["total"]
-        total= html + css +js
+            # Extract lines of code
+            html = last_lines["lines_of_code"]["html"]
+            css = last_lines["lines_of_code"]["css"]
+            js = last_lines["lines_of_code"]["javascript"]  # Uncomment to get JS lines
 
-        return html , css , js , total
-    # print(f"HTML    : {html}")
-    # print(f"CSS     : {css}")
-    # print(f"JS      : {js}")
-    # print(f"TOTAL   : {total}")
- except Exception as e:
-    print(e)
+            # Calculate total
+            total = html + css + js
 
+            # Return the values
+            return html, css, js, total
 
+    except Exception as e:
+        print(f"Error: {e}")
+        return None, None, None, None
 
-
-
-
-
+# Example usage
+html, css, js, total = loc()
+print(f"HTML    : {html}")
+print(f"CSS     : {css}")
+print(f"JS      : {js}")
+print(f"TOTAL   : {total}")
