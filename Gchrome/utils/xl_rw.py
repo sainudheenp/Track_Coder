@@ -1,6 +1,7 @@
 import openpyxl
 import os
 import datetime
+import pandas as pd
 
 def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL):
     try:
@@ -32,6 +33,12 @@ def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL):
                     sheet.append(row)
                     workbook.save(Xl_path)
                 print("Data added successfully!")
+
+
+
+            df =pd.read_excel(os.path.expanduser("~/TrackCoder/trackcoder.xlsx"))
+            html_total = df["HTML"].sum()
+            print(html_total)
 
     except Exception as e:
             print("Error",e)
