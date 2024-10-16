@@ -16,9 +16,9 @@ def main():
 
         xl_rw(Focus,Wpm, ACT, CT, html, css, js, total)
 
-        html_total ,css_total, js_total, CT_TOTAL, ACT_TOTAL,Focus_TOTA , T_TOTAL = total_calc()
+        html_total ,css_total, js_total, CT_TOTAL, ACT_TOTAL,Focus_TOTA  = total_calc()
 
-        Print_values(Wpm, Focus, ACT, CT, html, css, js, total, html_total ,css_total, js_total, CT_TOTAL, ACT_TOTAL,Focus_TOTA , T_TOTAL)
+        Print_values(Wpm, Focus, ACT, CT, html, css, js, total, html_total ,css_total, js_total, CT_TOTAL, ACT_TOTAL,Focus_TOTA )
 
 
     except Exception as e:

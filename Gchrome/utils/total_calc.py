@@ -35,11 +35,11 @@ def total_calc():
             Focus_TOTAL = minutes_time(total_mins)
             print("Focus_TOTAL",Focus_TOTAL)
 
-            total_mins = df["Total"].apply(time_to_mins).sum()
-            T_TOTAL = minutes_time(total_mins)
-            print("Focus_TOTAL",T_TOTAL)
+            # total_mins = df["Total"].apply(time_to_mins).sum()
+            # T_TOTAL = minutes_time(total_mins)
+            # print("T_TOTAL",T_TOTAL)
 
 
-            return html_total ,css_total, js_total, CT_TOTAL, ACT_TOTAL,Focus_TOTAL,T_TOTAL
+            return html_total ,css_total, js_total, CT_TOTAL, ACT_TOTAL,Focus_TOTAL
     except Exception as e :
         print("sum calc err", e)
