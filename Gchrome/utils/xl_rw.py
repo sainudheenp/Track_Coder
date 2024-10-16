@@ -5,16 +5,6 @@ import pandas as pd
 
 
 
-# calulate total minutes from xl sheet sting value
-def time_to_mins(time_string):
-    hours,mins = map(int, time_string.split(':'))
-    return hours * 60 + mins
-
-# printing and total min into hours ,mins
-def minutes_time(total_time):
-    hours = total_time // 60
-    minutes = total_time % 60
-    return f"{hours:02}:{minutes:02}"
 
 
 
@@ -53,23 +43,9 @@ def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL):
 
 #calculating sum
 
-            df =pd.read_excel(os.path.expanduser("~/TrackCoder/trackcoder.xlsx"))
-            html_total = df["HTML"].sum()
-            css_total = df["CSS"].sum()
-            js_total = df["JS"].sum()
-            print(html_total , js_total ,css_total)
 
-            total_mins = df["CT"].apply(time_to_mins).sum()
-            total_times = minutes_time(total_mins)
-            print("CT",total_times)
 
-            total_mins = df["ACT"].apply(time_to_mins).sum()
-            total_times = minutes_time(total_mins)
-            print("act",total_times)
 
-            total_mins = df["Focus"].apply(time_to_mins).sum()
-            total_times = minutes_time(total_mins)
-            print("Focus",total_times)
 
 
 

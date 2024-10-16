@@ -4,6 +4,7 @@ from utils.lines_of_code import loc
 from utils.xl_rw import xl_rw
 from utils.print_values import Print_values
 from utils.get_driver import get_driver
+from utils.total_calc import total_calc
 
 def main():
     try:
@@ -13,8 +14,12 @@ def main():
         Focus, ACT, CT = get_code_time()
         html, css, js, total = loc()
 
-        Print_values(Wpm, Focus, ACT, CT, html, css, js, total)
         xl_rw(Focus,Wpm, ACT, CT, html, css, js, total)
+
+        html_total ,css_total, js_total, CT_TOTAL, ACT_TOTAL,Focus_TOTA , T_TOTAL = total_calc()
+
+        Print_values(Wpm, Focus, ACT, CT, html, css, js, total, html_total ,css_total, js_total, CT_TOTAL, ACT_TOTAL,Focus_TOTA , T_TOTAL)
+
 
     except Exception as e:
         print("Error main:", e)
