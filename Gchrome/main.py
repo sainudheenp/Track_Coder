@@ -11,7 +11,7 @@ def main():
         print("Starting....")
 
         Wpm = get_wpm()
-        Focus, ACT, CT = get_code_time()
+        Focus , ACT, CT = get_code_time()
         html, css, js, total = loc()
 
         xl_rw(Focus,Wpm, ACT, CT, html, css, js, total)
