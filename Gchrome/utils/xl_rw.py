@@ -2,6 +2,11 @@ import openpyxl
 import os
 import datetime
 
+
+
+
+
+
 def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL):
     try:
             date = datetime.date.today().strftime("%Y-%m-%d")
@@ -32,6 +37,17 @@ def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL):
                     sheet.append(row)
                     workbook.save(Xl_path)
                 print("Data added successfully!")
+
+
+
+#calculating sum
+
+
+
+
+
+
+
 
     except Exception as e:
             print("Error",e)
