@@ -50,6 +50,73 @@ Configure Environment Variables: Create a .env file in the root directory with t
      userEmail_code_time=email
      password_code_time=password
 
+
+Here’s an updated version of the README.md with the Excel output path added:
+Track Coder Automation Project
+
+This project automates the process of gathering coding-related statistics such as typing speed (WPM), focus time, active code time, and lines of code written in HTML, CSS, and JavaScript. The data is scraped from various sources such as Software.com (for code time) and MonkeyType (for typing data) using Selenium and Python multithreading to improve performance. Additionally, this project features the ability to log the data into an Excel sheet for reporting.
+Features
+
+    Typing Speed: Automatically retrieves typing speed (WPM) and accuracy from MonkeyType.
+    Code Time: Scrapes active code time and focus time from Software.com dashboard using Selenium automation.
+    Lines of Code: Collects the number of lines written in HTML, CSS, and JavaScript.
+    Excel Export: Logs all gathered statistics into an Excel file.
+    Concurrent Scraping: Uses multithreading to run the scrapers for typing data and code time in parallel.
+
+Prerequisites
+For Local Setup:
+
+    Python 3.9+
+    Selenium (with Chrome WebDriver)
+    Pandas (for data handling)
+    OpenPyXL (for Excel read/write operations)
+    Dotenv (for handling environment variables)
+    Google Chrome (or another compatible browser)
+    VSCode Extensions for tracking lines of code
+        Ensure the VSCode extensions for tracking HTML, CSS, and JavaScript lines are installed.
+
+For Docker Setup:
+
+    Docker (installed and running on the system)
+
+Installation
+
+    Clone the repository:
+
+    bash
+
+git clone https://github.com/yourusername/track_coder.git
+cd track_coder
+
+Set up the environment: Create a virtual environment and install dependencies:
+
+bash
+
+python3 -m venv myenv
+source myenv/bin/activate
+pip install -r requirements.txt
+
+Configure Environment Variables: Create a .env file in the root directory with the following variables:
+
+bash
+
+    userEmail_code_time=your_software_com_email
+    password_code_time=your_software_com_password
+
+    Ensure WebDriver is Set Up:
+        Download the appropriate version of ChromeDriver for your version of Chrome.
+        Place the chromedriver file in ./Gchrome/driver/ (or update the path in the script).
+
+
+Excel Output Path
+
+The collected data will be saved in an Excel file located at:
+
+
+    /home/username/trackcoder/output.xlsx
+
+
+
 Running the Project Locally
 
 To run the project locally, execute the following:
