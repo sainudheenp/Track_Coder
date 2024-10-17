@@ -1,2 +1,7 @@
 myenv
 .env
+__pycache__
+Gchrome/utils/__pycache__
+Gchrome/utils/__pycache__/
+.Gchrome/utils/__pycache__/
+
