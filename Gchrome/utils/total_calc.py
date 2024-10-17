@@ -22,18 +22,20 @@ def total_calc():
             html_total = df["HTML"].sum()
             css_total = df["CSS"].sum()
             js_total = df["JS"].sum()
-            print(html_total , js_total ,css_total)
+
+            
+            # print(html_total , js_total ,css_total)
             total_mins = df["CT"].apply(time_to_mins).sum()
             CT_TOTAL = minutes_time(total_mins)
-            print("CT_TOTAL",CT_TOTAL)
+            # print("CT_TOTAL",CT_TOTAL)
 
             total_mins = df["ACT"].apply(time_to_mins).sum()
             ACT_TOTAL = minutes_time(total_mins)
-            print("ACT_TOTAL",ACT_TOTAL)
+            # print("ACT_TOTAL",ACT_TOTAL)
 
             total_mins = df["Focus"].apply(time_to_mins).sum()
             Focus_TOTAL = minutes_time(total_mins)
-            print("Focus_TOTAL",Focus_TOTAL)
+            # print("Focus_TOTAL",Focus_TOTAL)
 
             # total_mins = df["Total"].apply(time_to_mins).sum()
             # T_TOTAL = minutes_time(total_mins)
