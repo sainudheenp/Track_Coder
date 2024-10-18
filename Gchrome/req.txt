@@ -1,3 +1,0 @@
-python-dotenv
-
-selenium===4.23.0

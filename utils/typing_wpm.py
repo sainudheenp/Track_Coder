@@ -58,8 +58,8 @@ def get_wpm():
             return avg_wpm
 
     except Exception as error:
-        print(f"An error occurred: {error}")
-        get_wpm()
+        print(f"Typing error: {error}")
+        
 
 
     finally:
