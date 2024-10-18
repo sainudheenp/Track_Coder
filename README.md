@@ -59,7 +59,7 @@ Running the Project Locally
 
 To run the project locally, execute the following:
 
-     python main.py
+     python3 main.py
 
      
 
