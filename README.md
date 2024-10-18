@@ -56,7 +56,13 @@ Excel Output Path
 The collected data will be saved in an Excel file located at:
 
 
-    /home/username/trackcoder/output.xlsx
+    /username/trackcoder/output.xlsx
+
+Screenshot Output Path:
+
+    /username/trackcoder/screenshots
+
+
 
 
 
