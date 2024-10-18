@@ -77,6 +77,9 @@ def get_code_time():
         element_active = driver.find_element(By.XPATH, xpath_active)
         aria_label_active = element_active.get_attribute('aria-label')
 
+        os.makedirs(os.path.dirname(os.path.expanduser("~/TrackCoder/screenshots/")), exist_ok=True)
+        driver.save_screenshot(os.path.expanduser(f"~/TrackCoder/screenshots/{yesterday_url}.png"))
+
 
         site_act = aria_label_active.split(",")[1].strip().split()[0]
         active_code_time = round(float(site_act.rstrip('.')), 2)
