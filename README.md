@@ -1,4 +1,4 @@
-<h1>Track Coder Automation Project</h1>
+<h1>Track Coder - Automation Project</h1>
 
 
 This project automates the process of gathering coding-related statistics such as typing speed (WPM), focus time, active code time, and lines of code written in HTML, CSS, and JavaScript. The data is scraped from various sources such as Software.com (for code time) and MonkeyType (for typing data) using Selenium and Python  to . Additionally, this project features the ability to log the data into an Excel sheet for reporting.
@@ -14,12 +14,12 @@ For Local Setup:
 
     Python 3.9+
     Selenium
-    Pandas 
-    OpenPyXL 
-    Dotenv 
+    Pandas
+    OpenPyXL
+    Dotenv
     Google Chrome
     VSCode Extensions (TrackMe , Codetime)
-        
+
 For Docker Setup:
 
     Docker (installed and running on the system)
@@ -64,4 +64,4 @@ Running the Project Locally
 
 To run the project locally, execute the following:
 
-     python Gchrome/main.py
+     python main.py

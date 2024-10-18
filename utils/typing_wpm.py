@@ -51,15 +51,15 @@ def get_wpm():
 
             wpm_value = driver.find_element(By.CSS_SELECTOR, ".group.averageWpm .val")
             avg_wpm = wpm_value.text
-            print(f"Typing  d: '{avg_wpm}'")
+            # print(f"Typing  d: '{avg_wpm}'")
             if avg_wpm == '':
                         avg_wpm = 35
 
             return avg_wpm
 
     except Exception as error:
-        print(f"An error occurred: {error}")
-        get_wpm()
+        print(f"Typing error: {error}")
+        
 
 
     finally:

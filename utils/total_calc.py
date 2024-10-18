@@ -22,8 +22,9 @@ def total_calc():
             html_total = df["HTML"].sum()
             css_total = df["CSS"].sum()
             js_total = df["JS"].sum()
+            T_Total  = html_total + css_total + js_total
 
-            
+
             # print(html_total , js_total ,css_total)
             total_mins = df["CT"].apply(time_to_mins).sum()
             CT_TOTAL = minutes_time(total_mins)
@@ -42,6 +43,7 @@ def total_calc():
             # print("T_TOTAL",T_TOTAL)
 
 
-            return html_total ,css_total, js_total, CT_TOTAL, ACT_TOTAL,Focus_TOTAL
+
+            return html_total ,css_total, js_total, CT_TOTAL, ACT_TOTAL,Focus_TOTAL , T_Total
     except Exception as e :
         print("sum calc err", e)
