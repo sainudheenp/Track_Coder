@@ -51,6 +51,19 @@ Configure Environment Variables: Create a .env file in the root directory with t
      password_code_time=password
 
 
+
+
+
+
+Running the Project Locally
+
+To run the project locally, execute the following:
+
+     python main.py
+
+     
+
+
 Excel Output Path
 
 The collected data will be saved in an Excel file located at:
@@ -66,8 +79,3 @@ Screenshot Output Path:
 
 
 
-Running the Project Locally
-
-To run the project locally, execute the following:
-
-     python main.py
