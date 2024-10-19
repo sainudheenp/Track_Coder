@@ -12,7 +12,7 @@ Features
 Prerequisites
 For Local Setup:
 
-    Python 3.9+
+    Python 
     Selenium
     Pandas
     OpenPyXL
@@ -34,7 +34,7 @@ Installation
 Set up the environment: Create a virtual environment and install dependencies:
 
 
-    python3 -m venv myenv
+    python -m venv myenv
     source myenv/bin/activate
     pip install -r requirements.txt
 
@@ -59,7 +59,7 @@ Running the Project Locally
 
 To run the project locally, execute the following:
 
-     python3 main.py
+     python main.py
 
      
 
