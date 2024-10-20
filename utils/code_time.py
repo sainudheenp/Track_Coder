@@ -136,7 +136,7 @@ def get_code_time():
 
     except Exception as e:
         # print(f"Focus   : 00:00")
-        print("code time err")
+        print("code time err",e)
         # print(f"CT      : 00:00")
 
         # print(f"Focus   : {Focus}")
