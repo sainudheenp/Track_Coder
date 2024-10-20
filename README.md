@@ -18,7 +18,11 @@ For Local Setup:
     OpenPyXL
     Dotenv
     Google Chrome
-    VSCode Extensions (TrackMe , Codetime)
+    VSCode Extensions:
+                TrackMe  - v3.1.0
+                Codetime - v2.8.1
+
+
 
 For Docker Setup:
 
