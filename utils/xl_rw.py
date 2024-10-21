@@ -36,7 +36,7 @@ def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL):
                 for row in new_data:
                     sheet.append(row)
                     workbook.save(Xl_path)
-                print("Data added successfully!")
+                print("Data added to XL-Sheets successfully")
 
 
 
