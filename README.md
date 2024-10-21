@@ -46,13 +46,13 @@ Set up the environment: Create a virtual environment and install dependencies:
 Configure Environment Variables: Create a .env file in the root directory with the following variables:
 
     # monkeytype.com
-     userEmail_monkey=email
-     password_monkey=password
+    userEmail_monkey=@gmail.com
+    password_monkey=Password
 
 
     # app.software.com
-     userEmail_code_time=email
-     password_code_time=password
+    userEmail_code_time=@gmail.com
+    password_code_time=password
 
 
 
