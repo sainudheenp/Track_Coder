@@ -29,9 +29,12 @@ def get_wpm():
     try:
             driver.get("https://monkeytype.com/account")
 
+            
+
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "rejectAll")))
 
-            driver.find_element(By.CLASS_NAME, "acceptAll").click()
+            driver.find_element(By.CLASS_NAME, "rejectAll").click()
+            time.sleep(3)
 
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "current-email")))
             userName_field = driver.find_element(By.NAME, "current-email")
@@ -47,7 +50,7 @@ def get_wpm():
 
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".group.averageWpm .val")))
 
-            time.sleep(5)
+            
 
             wpm_value = driver.find_element(By.CSS_SELECTOR, ".group.averageWpm .val")
             avg_wpm = wpm_value.text
