@@ -23,9 +23,9 @@ def total_calc():
             df =pd.read_excel(os.path.expanduser("~/TrackCoder/trackcoder.xlsx"))
             # df =pd.read_excel(os.path.expanduser("~/TrackCoder/trackcodersafever.xlsx"))
 
-            html_total = df["HTML"].sum()
-            css_total = df["CSS"].sum()
-            js_total = df["JS"].sum()
+            html_total = int(round(df["HTML"].sum(),0))
+            css_total = int(round(df["CSS"].sum(),0))
+            js_total = int(round(df["JS"].sum(),0))
             T_Total  = html_total + css_total + js_total
 
 
