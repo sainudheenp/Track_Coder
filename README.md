@@ -12,7 +12,7 @@ Features
 Prerequisites
 For Local Setup:
 
-    Python 3.9+
+    Python 
     Selenium
     Pandas
     OpenPyXL

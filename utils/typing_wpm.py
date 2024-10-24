@@ -29,7 +29,7 @@ def get_wpm():
     try:
             driver.get("https://monkeytype.com/account")
 
-            
+
 
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "rejectAll")))
 
@@ -50,7 +50,7 @@ def get_wpm():
 
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".group.averageWpm .val")))
 
-            
+            time.sleep(4)
 
             wpm_value = driver.find_element(By.CSS_SELECTOR, ".group.averageWpm .val")
             avg_wpm = wpm_value.text
@@ -62,7 +62,7 @@ def get_wpm():
 
     except Exception as error:
         print(f"Typing error: {error}")
-        
+
 
 
     finally:

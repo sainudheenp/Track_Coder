@@ -1,7 +1,8 @@
 from tkinter import   *
 
-str ={
-    
+str = {
+    "ht" : "sd",
+    "dfs":"sdfs"
 }
 
 
