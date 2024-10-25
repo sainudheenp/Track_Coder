@@ -1,7 +1,7 @@
 
 def split(val):
     v , f = val.split(":")
-    print()
+    print(v , "ho",f)
 
 
 lol ="10:09"
