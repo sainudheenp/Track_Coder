@@ -18,17 +18,6 @@ ACT = "00:00"
 CT = "00:00"
 
 def get_code_time():
-    # options = Options()
-    # options.add_argument('--incognito')
-    # options.add_argument('--no-sandbox')
-    # options.add_argument('--disable-dev-shm-usage')
-    # options.add_argument('--headless')
-
-    # chromedriver_path = './Gchrome/driver/chromedriver'
-    # service = ChromeService(chromedriver_path)
-
-    # driver = webdriver.Chrome(service=service, options=options)
-
     driver = get_driver()
     today = datetime.now()
     yesterday = today - timedelta(days=1)
@@ -36,8 +25,6 @@ def get_code_time():
     yesterday_url = yesterday.strftime("%Y-%m-%d")
 
     try:
-        # driver.get("https://app.software.com/dashboard/components/active_code_time_graph")
-        # driver.get("https://app.software.com/code_time?week_of=2024-10-07")
         driver.get(f"https://app.software.com/code_time?week_of={yesterday_url}")
 
 
@@ -86,8 +73,7 @@ def get_code_time():
 
         hours_active = int(active_code_time//60)
         minutes_active = int(active_code_time % 60)
-        # print(f"Yesterday's ({yesterday_abbr}) ACT: {hours_active:01}:{minutes_active:02}")
-        # print(f"ACT     : {hours_active:01}:{minutes_active:02}")
+        
 
 
 
