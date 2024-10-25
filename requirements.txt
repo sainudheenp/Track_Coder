@@ -8,6 +8,7 @@ pandas
 
 webdriver-manager
 webdriver_manager
+clipboard
 
 # join &pass time
 # if ct , wpm then open and write excel
