@@ -12,11 +12,7 @@ Features
 Prerequisites
 For Local Setup:
 
-    Python 
-    Selenium
-    Pandas
-    OpenPyXL
-    Dotenv
+    Python
     Google Chrome
     VSCode Extensions:
                 TrackMe  - v3.1.0
