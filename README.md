@@ -28,7 +28,7 @@ For Docker Setup:
 
     Docker (installed and running on the system)
 
-Installation
+<h5>Installation</h5>
 
    Clone the repository:
 
