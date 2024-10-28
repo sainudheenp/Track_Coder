@@ -73,7 +73,7 @@ def get_code_time():
 
         hours_active = int(active_code_time//60)
         minutes_active = int(active_code_time % 60)
-        
+
 
 
 
@@ -96,10 +96,16 @@ def get_code_time():
         total_hours = total_minutes // 60
         remaining_minutes = total_minutes % 60
         # print(f"CT      : {total_hours:01}:{remaining_minutes:02}")
+        print("total minutes",total_minutes)
 
 
         # focus
-        fc_total_minutes = total_minutes + 60
+        if total_minutes != 0 :
+                fc_total_minutes = total_minutes + 60
+        else :
+                fc_total_minutes = total_minutes
+
+
         fc_hours = fc_total_minutes // 60
         fc_minutes = fc_total_minutes % 60
 
