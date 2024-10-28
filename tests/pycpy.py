@@ -1,7 +1,7 @@
 import clipboard
 
 
-clipboard.copy("hello dey")
+clipboard.copy("hello zain")
 text = clipboard.paste()
 print(text)
 
