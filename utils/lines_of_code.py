@@ -12,9 +12,9 @@ file_path = os.path.expanduser("~/bin/TrackMe/daily-progress-tracker.json.b64")
 
 def loc():
         try:
-            html = 0
-            css = 0
-            js = 0
+            html = 00
+            css = 00
+            js = 00
 
             with open(file_path, "r") as enc_json_file:
              encoded_content = enc_json_file.read()
@@ -31,9 +31,9 @@ def loc():
 
             if loc_date in json_data:
                     lines_of_code = json_data[loc_date]["lines_of_code"]
-                    html = lines_of_code.get("html",0)
-                    css = lines_of_code.get("css",0)
-                    js = lines_of_code.get("js",0)
+                    html = lines_of_code.get("html",00)
+                    css = lines_of_code.get("css",00)
+                    js = lines_of_code.get("js",00)
             # except Exception as e :
             #     total= html + css + js
             #     return html , css , js , total
