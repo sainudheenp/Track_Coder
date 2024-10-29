@@ -38,7 +38,7 @@ Installation
 Set up the environment: Create a virtual environment and install dependencies:
 
 
-    python3 -m venv myenv
+    python -m venv myenv
     source myenv/bin/activate
     pip install -r requirements.txt
 
@@ -54,8 +54,32 @@ Configure Environment Variables: Create a .env file in the root directory with t
      userEmail_code_time=email
      password_code_time=password
 
+
+
+
+
+
 Running the Project Locally
 
 To run the project locally, execute the following:
 
      python main.py
+
+     
+
+
+Excel Output Path
+
+The collected data will be saved in an Excel file located at:
+
+
+    /username/trackcoder/output.xlsx
+
+Screenshot Output Path:
+
+    /username/trackcoder/screenshots
+
+
+
+
+
