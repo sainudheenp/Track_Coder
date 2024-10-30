@@ -23,6 +23,7 @@ options.add_argument("--headless")
 
 # service = Service('./Gchrome/driver/chromedriver')
 # driver = webdriver.Chrome(service=service, options=options)
+print("Driver installing...")
 driver =  get_driver()
 
 def get_wpm():

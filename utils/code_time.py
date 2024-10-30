@@ -96,7 +96,7 @@ def get_code_time():
         total_hours = total_minutes // 60
         remaining_minutes = total_minutes % 60
         # print(f"CT      : {total_hours:01}:{remaining_minutes:02}")
-        print("total minutes",total_minutes)
+        # print("total minutes",total_minutes)
 
 
         # focus
