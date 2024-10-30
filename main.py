@@ -14,11 +14,11 @@ def main():
         Focus , ACT, CT = get_code_time()
         html, css, js, total = loc()
 
-        xl_rw(Focus,Wpm, ACT, CT, html, css, js, total)
 
-        html_total ,css_total, js_total, CT_TOTAL, ACT_TOTAL,Focus_TOTA ,T_Total = total_calc()
+        html_total ,css_total, js_total, CT_TOTAL, ACT_TOTAL,Focus_TOTA ,T_Total , Days = total_calc()
+        xl_rw(Focus,Wpm, ACT, CT, html, css, js, total , Days)
 
-        Print_values(Wpm, Focus, ACT, CT, html, css, js, total, html_total ,css_total, js_total, CT_TOTAL, ACT_TOTAL,Focus_TOTA ,T_Total)
+        Print_values(Wpm, Focus, ACT, CT, html, css, js, total, html_total ,css_total, js_total, CT_TOTAL, ACT_TOTAL,Focus_TOTA ,T_Total , Days)
 
 
     except Exception as e:
