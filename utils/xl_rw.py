@@ -7,7 +7,7 @@ import datetime
 
 
 
-def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL):
+def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL ,Days):
     try:
             date = datetime.date.today().strftime("%Y-%m-%d")
 
@@ -21,10 +21,10 @@ def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL):
             else:
                 workbook = openpyxl.Workbook()
                 sheet = workbook.active
-                sheet.append(["Date", "Focus", "Wpm", "CT", "ACT" ,"HTML" , "CSS","JS","Total"])
+                sheet.append(["Date", "Focus", "Wpm", "CT", "ACT" ,"HTML" , "CSS","JS","Total","Days"])
 
             new_data = [
-            [date, Focus, Wpm, CT, ACT, HTML , CSS , JS , TOTAL]
+            [date, Focus, Wpm, CT, ACT, HTML , CSS , JS , TOTAL , Days]
             ]
 
 

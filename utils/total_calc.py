@@ -42,7 +42,9 @@ def total_calc():
             total_mins = df["Focus"].apply(time_to_mins).sum()
             Focus_TOTAL = minutes_time(total_mins)
 
-            return html_total ,css_total, js_total, CT_TOTAL, ACT_TOTAL,Focus_TOTAL , T_Total
+            Days = int(df.iloc[-1]["Days"])  + 1 
+
+            return html_total ,css_total, js_total, CT_TOTAL, ACT_TOTAL,Focus_TOTAL , T_Total,Days
     except Exception as e :
         print(" calc err", e)
 
