@@ -55,6 +55,11 @@ Configure Environment Variables: Create a .env file in the root directory with t
 
 
 
+
+
+
+
+
 Running the Project Locally
 
 To run the project locally, execute the following:
