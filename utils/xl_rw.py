@@ -31,12 +31,13 @@ def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL ,Days):
             date_column = sheet['A']
             dates = [cell.value for cell in date_column if cell.value is not None]
             if date in dates :
-                print(f"Data for {date} already exists in the Excel sheet. No new entry added.")
+                print(f " \n Data for {date} already exists in the Excel sheet. No new entry added.")
             else :
                 for row in new_data:
                     sheet.append(row)
                     workbook.save(Xl_path)
-                print("Data added to XL-Sheets successfully")
+
+                print(" \n Data added to XL-Sheets successfully")
 
 
 
