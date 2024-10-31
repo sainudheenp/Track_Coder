@@ -28,6 +28,8 @@ def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL ):
             Days = days_column[-1] + 1 
 
 
+            print("ct",CT)
+            print("act",ACT)
 
             new_data = [
             [date, Focus, Wpm, CT, ACT, HTML , CSS , JS , TOTAL , Days]

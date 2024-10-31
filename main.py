@@ -15,7 +15,7 @@ def main():
         
         html, css, js, total = loc()
 
-        Days = xl_rw(Focus,Wpm, ACT, CT, html, css, js, total)
+        Days = xl_rw(Focus,Wpm,CT, ACT,  html, css, js, total)
 
         html_total ,css_total, js_total, CT_TOTAL, ACT_TOTAL,Focus_TOTA ,T_Total  = total_calc()
 
