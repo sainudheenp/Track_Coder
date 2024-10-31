@@ -23,9 +23,22 @@ def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL ):
                 workbook = openpyxl.Workbook()
                 sheet = workbook.active
                 sheet.append(["Date", "Focus", "Wpm", "CT", "ACT" ,"HTML" , "CSS","JS","Total","Days"])
-            
-            days_column = [cell.value for cell in sheet['J'] if cell.value is not None and isinstance(cell.value, int)]
-            Days = days_column[-1] + 1 
+
+
+            date_column = sheet['A']
+            dates = [cell.value for cell in date_column if cell.value is not None]
+         
+
+            try :
+                days_column = [cell.value for cell in sheet['J'] if cell.value is not None and isinstance(cell.value, int)]
+                if date in dates :
+                    Days = date_column[-1]
+                else :
+                    Days = days_column[-1] + 1      
+            except Exception as e :
+                print("days::",e)
+                Days = 1
+
 
 
             print("ct",CT)
@@ -36,8 +49,6 @@ def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL ):
             ]
 
 
-            date_column = sheet['A']
-            dates = [cell.value for cell in date_column if cell.value is not None]
             if date in dates :
                 print(f" \n Data for {date} already exists in the Excel sheet. No new entry added.")
             else :
@@ -62,7 +73,7 @@ def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL ):
 
 
     except Exception as e:
-            print("Error",e)
+            print("Error xl",e)
 
     finally :
         return Days
