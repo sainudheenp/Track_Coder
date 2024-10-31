@@ -33,7 +33,7 @@ def loc():
                     lines_of_code = json_data[loc_date]["lines_of_code"]
                     html = lines_of_code.get("html",00)
                     css = lines_of_code.get("css",00)
-                    js = lines_of_code.get("js",00)
+                    js = lines_of_code.get("javascript",00)
             # except Exception as e :
             #     total= html + css + js
             #     return html , css , js , total
