@@ -32,9 +32,9 @@ def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL ):
             try :
                 days_column = [cell.value for cell in sheet['J'] if cell.value is not None and isinstance(cell.value, int)]
                 if date in dates :
-                    Days = date_column[-1]
+                    Days = int(days_column[-1])
                 else :
-                    Days = days_column[-1] + 1      
+                    Days =  int(days_column[-1]) + 1      
             except Exception as e :
                 print("days::",e)
                 Days = 1
