@@ -100,6 +100,10 @@ def get_code_time():
 
 
         # focus
+
+
+
+
         if total_minutes != 0 :
                 fc_total_minutes = total_minutes + 60
         else :
@@ -108,6 +112,12 @@ def get_code_time():
 
         fc_hours = fc_total_minutes // 60
         fc_minutes = fc_total_minutes % 60
+
+        print(f"Your Focus time Calculatd by Track_Coder is : {fc_hours}:{fc_minutes}")
+        q = input("Would you like to modify this time? (Y/N): ")
+
+        if (q=="Y" or q=="y"):
+            fc_hours , fc_minutes =input("Please enter your focus hours and minutes : ").split(":")
 
 
         Focus=f"{fc_hours:01}:{fc_minutes:02}"

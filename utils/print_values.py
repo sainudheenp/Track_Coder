@@ -28,7 +28,7 @@ def Print_values(Wpm, Focus, ACT, CT, html, css, js, total,html_total ,css_total
         f"CT      : [{split(CT)}][{split(CT_TOTAL)}]\n"
         f"ACT     : [{split(ACT)}][{split(ACT_TOTAL)}]\n"
         f"HTML    : [{html}][{html_total}]\n"
-        f"CSS     : [{css}]{css_total}]\n"
+        f"CSS     : [{css}][{css_total}]\n"
         f"JS      : [{js}][{js_total}]\n"
         f"TOTAL   : [{total}][{T_Total}]\n"
         f"Days    : #{Days}"

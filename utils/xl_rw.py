@@ -10,7 +10,7 @@ import datetime
 def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL ):
     try:
             date = datetime.date.today().strftime("%Y-%m-%d")
-            # Days = int(df.iloc[-1]["Days"])  + 1 
+            # Days = int(df.iloc[-1]["Days"])  + 1
 
             Xl_path = os.path.expanduser("~/TrackCoder/trackcoder.xlsx")
 
@@ -27,22 +27,20 @@ def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL ):
 
             date_column = sheet['A']
             dates = [cell.value for cell in date_column if cell.value is not None]
-         
+
 
             try :
                 days_column = [cell.value for cell in sheet['J'] if cell.value is not None and isinstance(cell.value, int)]
                 if date in dates :
                     Days = int(days_column[-1])
                 else :
-                    Days =  int(days_column[-1]) + 1      
+                    Days =  int(days_column[-1]) + 1
             except Exception as e :
                 print("days::",e)
                 Days = 1
 
 
 
-            print("ct",CT)
-            print("act",ACT)
 
             new_data = [
             [date, Focus, Wpm, CT, ACT, HTML , CSS , JS , TOTAL , Days]
@@ -57,9 +55,9 @@ def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL ):
                     workbook.save(Xl_path)
 
                 print(" \n Data added to XL-Sheets successfully")
-            
-            
-     
+
+
+
 
 
 
