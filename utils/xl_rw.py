@@ -48,7 +48,7 @@ def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL ):
 
 
             if date in dates :
-                print(f" \n Data for {date} already exists in the Excel sheet. No new entry added.")
+                print(f"\n Data for {date} already exists in the Excel sheet.")
             else :
                 for row in new_data:
                     sheet.append(row)
