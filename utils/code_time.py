@@ -111,9 +111,9 @@ def get_code_time():
 
         if (q=="Y" or q=="y"):
             fc_hours , fc_minutes =input("Please enter your focus hours and minutes : ").split(":")
-            if(fc_hours>18 or fc_minutes>60):
-                print("Try again")
-                fc_hours , fc_minutes =input("enter your focus hours and minutes (eg. 8:20 ) :  ").split(":")
+            # if(fc_hours  18 or fc_minutes>60):
+            #     print("Try again")
+            #     fc_hours , fc_minutes =input("enter your focus hours and minutes (eg. 8:20 ) :  ").split(":")
 
 
 
