@@ -10,31 +10,17 @@ from dotenv import load_dotenv
 from utils.get_driver import get_driver
 from .get_driver import get_driver
 
-
-avg_wpm = 30
-
 load_dotenv()
 
-options = Options()
-options.add_argument('--incognito')
-options.add_argument('--no-sandbox')
-options.add_argument('--disable-dev-shm-usage')
-options.add_argument("--headless")
-
-# service = Service('./Gchrome/driver/chromedriver')
-# driver = webdriver.Chrome(service=service, options=options)
 print("Driver installing...")
 driver =  get_driver()
 
 def get_wpm():
     try:
             driver.get("https://monkeytype.com/account")
-
-
-
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "rejectAll")))
-
             driver.find_element(By.CLASS_NAME, "rejectAll").click()
+
             time.sleep(3)
 
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "current-email")))
@@ -55,7 +41,7 @@ def get_wpm():
 
             wpm_value = driver.find_element(By.CSS_SELECTOR, ".group.averageWpm .val")
             avg_wpm = wpm_value.text
-            # print(f"Typing  d: '{avg_wpm}'")
+
             if avg_wpm == '':
                         avg_wpm = 35
 
@@ -68,13 +54,3 @@ def get_wpm():
 
     finally:
         driver.quit()
-
-
-
-
-
-# check = get_typing_data()
-# if (check):
-#     print(check)
-# else :
-# get_wpm()

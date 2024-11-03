@@ -26,7 +26,7 @@ def loc():
             today = datetime.now()
             yesterday = today - timedelta(days=1)
             loc_date = yesterday.strftime("%m/%d/%Y")
-            # print(loc_date)
+            # p
 
 
             if loc_date in json_data:

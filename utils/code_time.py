@@ -19,6 +19,7 @@ CT = "00:00"
 
 def get_code_time():
     driver = get_driver()
+
     today = datetime.now()
     yesterday = today - timedelta(days=1)
     yesterday_day = yesterday.strftime('%A')
@@ -75,11 +76,7 @@ def get_code_time():
         minutes_active = int(active_code_time % 60)
 
 
-
-
-
-
-        # Find Code Time
+        #  Code Time
         xpath_code_time = f'//*[contains(@aria-label, "{yesterday_abbr},") and contains(@aria-label, "Code Time")]'
         element_code_time = driver.find_element(By.XPATH, xpath_code_time)
         aria_label_code_time = element_code_time.get_attribute('aria-label')
@@ -100,10 +97,6 @@ def get_code_time():
 
 
         # focus
-
-
-
-
         if total_minutes != 0 :
                 fc_total_minutes = total_minutes + 60
         else :
@@ -118,6 +111,10 @@ def get_code_time():
 
         if (q=="Y" or q=="y"):
             fc_hours , fc_minutes =input("Please enter your focus hours and minutes : ").split(":")
+            if(fc_hours>18 or fc_minutes>60):
+                print("Try again")
+                fc_hours , fc_minutes =input("enter your focus hours and minutes (eg. 8:20 ) :  ").split(":")
+
 
 
         Focus=f"{fc_hours:01}:{fc_minutes:02}"
@@ -139,13 +136,6 @@ def get_code_time():
     except Exception as e:
         # print(f"Focus   : 00:00")
         print("code time err",e)
-        # print(f"CT      : 00:00")
-
-        # print(f"Focus   : {Focus}")
-        # print(f"ACT     : {ACT}")
-        # print(f"CT      : {CT}")
-
-
 
     finally:
         driver.quit()
