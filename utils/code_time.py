@@ -6,6 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime, timedelta
 import os
+import sys
 from dotenv import load_dotenv
 load_dotenv()
 import time
@@ -136,6 +137,7 @@ def get_code_time():
     except Exception as e:
         # print(f"Focus   : 00:00")
         print("code time err",e)
+        sys.exit(1)
 
     finally:
         driver.quit()

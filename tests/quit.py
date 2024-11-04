@@ -8,8 +8,23 @@ import time
 import os
 import sys
 from dotenv import load_dotenv
-from utils.get_driver import get_driver
-from .get_driver import get_driver
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
+
+def get_driver():
+    options = Options()
+    options.add_argument('--incognito')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+    # options.add_argument("--headless")
+
+    # Pass the options here
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+    return driver
+
+
 
 load_dotenv()
 
@@ -20,7 +35,7 @@ def get_wpm():
     try:
             driver.get("https://monkeytype.com/account")
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "rejectAll")))
-            driver.find_element(By.CLASS_NAME, "rejectAll").click()
+            driver.find_element(By.CLASS_NAME, "rejedctAll").click()
 
             time.sleep(3)
 
@@ -56,3 +71,4 @@ def get_wpm():
 
     finally:
         driver.quit()
+get_wpm()
