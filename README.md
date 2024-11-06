@@ -7,7 +7,6 @@ This project automates the process of gathering and recording coding-related sta
 
 - **Generate Excel Sheet**: Creates an Excel file to log daily statistics for easy tracking and reporting.
 - **Take Screenshots**: Captures screenshots of Codetime graph .
-<!-- - **Calculate Code Time**: Retrieves active code time, tracking productive hours spent coding. -->
 - **Fetch Typing Speed (WPM)**: Automatically gathers typing speed (words per minute) from MonkeyType.
 - **Fetch Code Time**: Scrapes focus time and code time from the Software.com dashboard.
 - **Calculate Lines of Code**: Tracks and logs the number of lines written in HTML, CSS, and JavaScript.
