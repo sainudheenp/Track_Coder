@@ -6,6 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime, timedelta
 import os
+import sys
 from dotenv import load_dotenv
 load_dotenv()
 import time
@@ -19,6 +20,7 @@ CT = "00:00"
 
 def get_code_time():
     driver = get_driver()
+
     today = datetime.now()
     yesterday = today - timedelta(days=1)
     yesterday_day = yesterday.strftime('%A')
@@ -75,11 +77,7 @@ def get_code_time():
         minutes_active = int(active_code_time % 60)
 
 
-
-
-
-
-        # Find Code Time
+        #  Code Time
         xpath_code_time = f'//*[contains(@aria-label, "{yesterday_abbr},") and contains(@aria-label, "Code Time")]'
         element_code_time = driver.find_element(By.XPATH, xpath_code_time)
         aria_label_code_time = element_code_time.get_attribute('aria-label')
@@ -96,7 +94,7 @@ def get_code_time():
         total_hours = total_minutes // 60
         remaining_minutes = total_minutes % 60
         # print(f"CT      : {total_hours:01}:{remaining_minutes:02}")
-        print("total minutes",total_minutes)
+        # print("total minutes",total_minutes)
 
 
         # focus
@@ -108,6 +106,16 @@ def get_code_time():
 
         fc_hours = fc_total_minutes // 60
         fc_minutes = fc_total_minutes % 60
+
+        print(f"Your Focus time Calculatd by Track_Coder is : {fc_hours}:{fc_minutes}")
+        q = input("Would you like to modify this time? (Y/N): ")
+
+        if (q=="Y" or q=="y"):
+            fc_hours , fc_minutes =input("Please enter your focus hours and minutes : ").split(":")
+            # if(fc_hours  18 or fc_minutes>60):
+            #     print("Try again")
+            #     fc_hours , fc_minutes =input("enter your focus hours and minutes (eg. 8:20 ) :  ").split(":")
+
 
 
         Focus=f"{fc_hours:01}:{fc_minutes:02}"
@@ -129,13 +137,7 @@ def get_code_time():
     except Exception as e:
         # print(f"Focus   : 00:00")
         print("code time err",e)
-        # print(f"CT      : 00:00")
-
-        # print(f"Focus   : {Focus}")
-        # print(f"ACT     : {ACT}")
-        # print(f"CT      : {CT}")
-
-
+        sys.exit(1)
 
     finally:
         driver.quit()

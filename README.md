@@ -1,22 +1,23 @@
 <h1>Track Coder - Automation Project</h1>
 
 
-This project automates the process of gathering coding-related statistics such as typing speed (WPM), focus time, active code time, and lines of code written in HTML, CSS, and JavaScript. The data is scraped from various sources such as Software.com (for code time) and MonkeyType (for typing data) using Selenium and Python  to . Additionally, this project features the ability to log the data into an Excel sheet for reporting.
-Features
+This project automates the process of gathering and recording coding-related statistics, including typing speed (WPM), focus time, active code time, lines of code written, and daily tracking. It scrapes data from various sources like Software.com and MonkeyType using Selenium and Python, then saves the collected data into an Excel sheet for detailed reporting.
 
-    Typing Speed: Automatically retrieves typing speed (WPM)  from MonkeyType.
-    Code Time: Scrapes active code time and focus time from Software.com dashboard using Selenium automation.
-    Lines of Code: Collects the number of lines written in HTML, CSS, and JavaScript.
-    Excel Export: Logs all gathered statistics into an Excel file.
+## Features
+
+- **Generate Excel Sheet**: Creates an Excel file to log daily statistics for easy tracking and reporting.
+- **Take Screenshots**: Captures screenshots of Codetime graph .
+- **Fetch Typing Speed (WPM)**: Automatically gathers typing speed (words per minute) from MonkeyType.
+- **Fetch Code Time**: Scrapes focus time and code time from the Software.com dashboard.
+- **Calculate Lines of Code**: Tracks and logs the number of lines written in HTML, CSS, and JavaScript.
+- **Total Coding Days**: Logs consecutive days of activity, helping track daily progress over time.
+- **Copy to Clipboard**: Copies the generated values, such as daily metrics or summaries, directly to the clipboard for easy sharing or further processing.
+
 
 Prerequisites
 For Local Setup:
 
-    Python 
-    Selenium
-    Pandas
-    OpenPyXL
-    Dotenv
+    Python
     Google Chrome
     VSCode Extensions:
                 TrackMe  - v3.1.0
@@ -26,9 +27,9 @@ For Local Setup:
 
 For Docker Setup:
 
-    Docker (installed and running on the system)
+    .
 
-Installation
+## Installation
 
    Clone the repository:
 
@@ -46,13 +47,18 @@ Set up the environment: Create a virtual environment and install dependencies:
 Configure Environment Variables: Create a .env file in the root directory with the following variables:
 
     # monkeytype.com
-     userEmail_monkey=email
-     password_monkey=password
+    userEmail_monkey=@gmail.com
+    password_monkey=Password
 
 
     # app.software.com
-     userEmail_code_time=email
-     password_code_time=password
+    userEmail_code_time=@gmail.com
+    password_code_time=password
+
+
+
+
+
 
 
 
@@ -65,7 +71,7 @@ To run the project locally, execute the following:
 
      python main.py
 
-     
+
 
 
 Excel Output Path

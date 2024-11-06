@@ -12,11 +12,12 @@ def main():
 
         Wpm = get_wpm()
         Focus , ACT, CT = get_code_time()
+        
         html, css, js, total = loc()
 
+        Days = xl_rw(Focus,Wpm,CT, ACT,  html, css, js, total)
 
-        html_total ,css_total, js_total, CT_TOTAL, ACT_TOTAL,Focus_TOTA ,T_Total , Days = total_calc()
-        xl_rw(Focus,Wpm, ACT, CT, html, css, js, total , Days)
+        html_total ,css_total, js_total, CT_TOTAL, ACT_TOTAL,Focus_TOTA ,T_Total  = total_calc()
 
         Print_values(Wpm, Focus, ACT, CT, html, css, js, total, html_total ,css_total, js_total, CT_TOTAL, ACT_TOTAL,Focus_TOTA ,T_Total , Days)
 
