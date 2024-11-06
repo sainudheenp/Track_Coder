@@ -1,13 +1,21 @@
 <h1>Track Coder - Automation Project</h1>
 
 
-This project automates the process of gathering coding-related statistics such as typing speed (WPM), focus time, active code time, and lines of code written in HTML, CSS, and JavaScript. The data is scraped from various sources such as Software.com (for code time) and MonkeyType (for typing data) using Selenium and Python  to . Additionally, this project features the ability to log the data into an Excel sheet for reporting.
-Features
+This project automates the process of gathering coding-related statistics such as typing speed (WPM), focus time, active code time, and lines of code written in HTML, CSS, and JavaScript. The data is scraped from various sources such as Software.com (for code time) and MonkeyType.com (for WPM) using Selenium and Python  to . Additionally, this project features the ability to log the data into an Excel sheet for reporting.
 
-    Typing Speed: Automatically retrieves typing speed (WPM)  from MonkeyType.
-    Code Time: Scrapes active code time and focus time from Software.com dashboard using Selenium automation.
-    Lines of Code: Collects the number of lines written in HTML, CSS, and JavaScript.
-    Excel Export: Logs all gathered statistics into an Excel file.
+This project automates the process of gathering and recording coding-related statistics, including typing speed (WPM), focus time, active code time, lines of code written, and daily tracking. It scrapes data from various sources like Software.com and MonkeyType using Selenium and Python, then saves the collected data into an Excel sheet for detailed reporting.
+
+## Features
+
+- **Generate Excel Sheet**: Creates an Excel file to log daily statistics for easy tracking and reporting.
+- **Take Screenshots**: Captures screenshots of Codetime graph .
+<!-- - **Calculate Code Time**: Retrieves active code time, tracking productive hours spent coding. -->
+- **Fetch Typing Speed (WPM)**: Automatically gathers typing speed (words per minute) from MonkeyType.
+- **Fetch Code Time**: Scrapes focus time and code time from the Software.com dashboard.
+- **Calculate Lines of Code**: Tracks and logs the number of lines written in HTML, CSS, and JavaScript.
+- **Total Coding Days**: Logs consecutive days of activity, helping track daily progress over time.
+- **Copy to Clipboard**: Copies the generated values, such as daily metrics or summaries, directly to the clipboard for easy sharing or further processing.
+
 
 Prerequisites
 For Local Setup:
@@ -66,7 +74,7 @@ To run the project locally, execute the following:
 
      python main.py
 
-     
+
 
 
 Excel Output Path
