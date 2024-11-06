@@ -27,7 +27,7 @@ For Local Setup:
 
 For Docker Setup:
 
-    Docker (installed and running on the system)
+    .
 
 ## Installation
 
