@@ -1,5 +1,6 @@
 myenv
 .env
+trackcoder.xlsx
 ./__pycache__
 __pycache__
 Gchrome/utils/__pycache__
@@ -7,4 +8,3 @@ Gchrome/utils/__pycache__/
 .Gchrome/utils/__pycache__/
 
 ./trackcoder.xlsx
-trackcoder.xlsx
