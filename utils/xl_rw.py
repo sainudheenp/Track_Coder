@@ -1,6 +1,7 @@
 import openpyxl
 import os
-import datetime
+from datetime import datetime, timedelta
+
 
 
 
@@ -9,8 +10,10 @@ import datetime
 
 def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL ):
     try:
-            date = datetime.date.today().strftime("%Y-%m-%d")
+            # date = datetime.date.today().strftime("%Y-%m-%d")
             # Days = int(df.iloc[-1]["Days"])  + 1
+            date = (datetime.today() - timedelta(days=1)).strftime("%Y-%m-%d")
+
 
             Xl_path = os.path.expanduser("~/TrackCoder/trackcoder.xlsx")
 
@@ -47,13 +50,12 @@ def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL ):
 
 
             if date in dates :
-                print(f"\n Data for {date} already exists in the Excel sheet.")
+                print(f"\n❗ \033[1mData for {date} already exists in the Excel sheet.\033[0m")
             else :
                 for row in new_data:
                     sheet.append(row)
                     workbook.save(Xl_path)
-
-                print(" \n Data added to XL-Sheets successfully")
+                print("\n\n\u2705\033[1m Data added to XL-Sheets successfully\033[0m")
 
 
 

@@ -4,7 +4,10 @@ import os
 
 # calulate total minutes from xl sheet sting value
 def time_to_mins(time_string):
-    hours,mins = map(int , time_string.split(':'))
+    if isinstance(time_string,str):
+        hours,mins = map(int , time_string.split(':'))
+    else :
+        hours,mins=0,0
     # print("tm",hours * 60 + mins)
     return hours * 60 + mins
 
@@ -29,6 +32,7 @@ def total_calc():
             T_Total  = html_total + css_total + js_total
 
 
+
             # print(html_total , js_total ,css_total)
             total_mins = df["CT"].apply(time_to_mins).sum()
             # print("total mins ct",total_mins)
@@ -42,7 +46,7 @@ def total_calc():
             total_mins = df["Focus"].apply(time_to_mins).sum()
             Focus_TOTAL = minutes_time(total_mins)
 
-            
+
 
             return html_total ,css_total, js_total, CT_TOTAL, ACT_TOTAL,Focus_TOTAL , T_Total
     except Exception as e :
