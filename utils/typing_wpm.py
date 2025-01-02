@@ -40,7 +40,7 @@ def get_wpm():
 
             time.sleep(4)
 
-            wpm_value = driver.find_element(By.CSS_SELECTOR, ".group.averageWpm .val")
+            wpm_value = driver.find_element(By.CSS_SELECTOR, ".group.averageWpm10 .val")
             avg_wpm = wpm_value.text
 
             if avg_wpm == '':
