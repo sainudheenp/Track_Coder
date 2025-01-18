@@ -1,5 +1,7 @@
 <h1>Track Coder - Automation Project</h1>
 
+![WakaTime](./controllers_brief.svg)
+<img src="https://wakatime.com/badge/user/bd956d12-1142-4657-aee2-95795d5761d9/project/7d6378df-156d-444c-9d2a-f539d2ca72dd.svg">
 
 This project automates the process of gathering and recording coding-related statistics, including typing speed (WPM), focus time, active code time, lines of code written, and daily tracking. It scrapes data from various sources like Software.com and MonkeyType using Selenium and Python, then saves the collected data into an Excel sheet for detailed reporting.
 
