@@ -11,7 +11,7 @@ def Print_values(Wpm, Focus, ACT, CT, html, css, js, total,html_total ,css_total
 
     print("\n")
 
-    print(f"Typing  : [{Wpm}][75%]")
+    print(f"Typing  : [{Wpm}wpm][90%]")
     print(f"Focus   : [{split(Focus)}][{split(Focus_TOTAL)}]")
     print(f"CT      : [{split(CT)}][{split(CT_TOTAL)}]")
     print(f"ACT     : [{split(ACT)}][{split(ACT_TOTAL)}]")
