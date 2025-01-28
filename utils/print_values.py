@@ -23,7 +23,7 @@ def Print_values(Wpm, Focus, ACT, CT, html, css, js, total,html_total ,css_total
 
     clipboard.copy(
         # "\n"
-        f"Typing  : [{Wpm}][75%]\n"
+        f"Typing  : [{Wpm}wpm][95%]\n"
         f"Focus   : [{split(Focus)}][{split(Focus_TOTAL)}]\n"
         f"CT      : [{split(CT)}][{split(CT_TOTAL)}]\n"
         f"ACT     : [{split(ACT)}][{split(ACT_TOTAL)}]\n"
