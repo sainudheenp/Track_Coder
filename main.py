@@ -6,18 +6,32 @@ from utils.print_values import Print_values
 from utils.get_driver import get_driver
 from utils.total_calc import total_calc
 from utils.cfile import copy_past
+import argparse
+from datetime import datetime, timedelta
+
 
 def main():
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-date", default=(datetime.today()- timedelta(days=1)).strftime("%Y-%m-%d"), help="Specify a date (YYYY-MM-DD)")
+    args = parser.parse_args()
+    yesterday = args.date
+
+
+
     try:
-        print("Starting....")
+        print(f"Starting....{args.date}")
+
+#date arg
+
 
         Wpm = get_wpm()
-        
-        Focus , ACT, CT = get_code_time()
 
-        html, css, js, total = loc()
+        Focus , ACT, CT = get_code_time(yesterday)
 
-        Days = xl_rw(Focus,Wpm,CT, ACT,  html, css, js, total)
+        html, css, js, total = loc(yesterday)
+
+        Days = xl_rw(Focus,Wpm,CT, ACT,  html, css, js, total,yesterday=yesterday)
 
         html_total ,css_total, js_total, CT_TOTAL, ACT_TOTAL,Focus_TOTA ,T_Total  = total_calc()
 

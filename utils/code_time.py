@@ -18,13 +18,18 @@ Focus = "00:00"
 ACT = "00:00"
 CT = "00:00"
 
-def get_code_time():
+def get_code_time(yesterday):
     driver = get_driver()
 
-    today = datetime.now()
-    yesterday = today - timedelta(days=1)
+    # today = datetime.now()
+    # yesterday = today - timedelta(days=1)
+    # print(yesterday)
+    # print("hllo")
+
+    yesterday = datetime.strptime(yesterday,"%Y-%m-%d")
     yesterday_day = yesterday.strftime('%A')
     yesterday_url = yesterday.strftime("%Y-%m-%d")
+    # print(yesterday_day , yesterday_url)
 
     try:
         driver.get(f"https://app.software.com/code_time?week_of={yesterday_url}")

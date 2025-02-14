@@ -8,11 +8,12 @@ from datetime import datetime, timedelta
 
 
 
-def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL ):
+def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL ,yesterday):
     try:
-            # date = datetime.date.today().strftime("%Y-%m-%d")
-            # Days = int(df.iloc[-1]["Days"])  + 1
-            date = (datetime.today() - timedelta(days=1)).strftime("%Y-%m-%d")
+            # date = (datetime.today() - timedelta(days=1)).strftime("%Y-%m-%d")
+
+            yesterday = datetime.strptime(yesterday,"%Y-%m-%d")
+            date = yesterday.strftime("%Y-%m-%d")
 
 
             Xl_path = os.path.expanduser("~/TrackCoder/trackcoder.xlsx")

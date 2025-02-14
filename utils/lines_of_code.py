@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 file_path = os.path.expanduser("~/bin/TrackMe/daily-progress-tracker.json.b64")
 
 
-def loc():
+def loc(yesterday):
         try:
             html = 00
             css = 00
@@ -23,8 +23,9 @@ def loc():
             json_data = json.loads(decoded_content)
 
 
-            today = datetime.now()
-            yesterday = today - timedelta(days=1)
+        #     today = datetime.now()
+        #     yesterday = today - timedelta(days=1)
+            yesterday = datetime.strptime(yesterday,"%Y-%m-%d")
             loc_date = yesterday.strftime("%m/%d/%Y")
             # p
 
