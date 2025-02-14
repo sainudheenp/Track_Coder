@@ -71,11 +71,9 @@ def get_code_time(yesterday):
         element_active = driver.find_element(By.XPATH, xpath_active)
         aria_label_active = element_active.get_attribute('aria-label')
 
-
+        #save_screenshot
         graph=driver.find_element(By.CLASS_NAME , "highcharts-background")
         driver.execute_script("arguments[0].scrollIntoView();", graph)
-
-
         os.makedirs(os.path.dirname(os.path.expanduser("~/TrackCoder/screenshots/")), exist_ok=True)
         driver.save_screenshot(os.path.expanduser(f"~/TrackCoder/screenshots/{yesterday_url}.png"))
 
