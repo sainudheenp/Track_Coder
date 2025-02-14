@@ -71,6 +71,9 @@ Running the Project Locally
 To run the project locally, execute the following:
 
      python main.py
+
+for custom date :
+
      python main.py -date 2025-01-01
 
 
