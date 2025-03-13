@@ -10,8 +10,10 @@ def Print_values(Wpm, Focus, ACT, CT, html, css, js, total,html_total ,css_total
 
 
     print("\n")
+    print("\n📌 Coding Activity Report 📑\n" + "-" * 40)
 
-    print(f"Typing  : [{Wpm}wpm][90%]")
+
+    print(f"Typing  : [{Wpm}wpm][95%]")
     print(f"Focus   : [{split(Focus)}][{split(Focus_TOTAL)}]")
     print(f"CT      : [{split(CT)}][{split(CT_TOTAL)}]")
     print(f"ACT     : [{split(ACT)}][{split(ACT_TOTAL)}]")
@@ -20,6 +22,9 @@ def Print_values(Wpm, Focus, ACT, CT, html, css, js, total,html_total ,css_total
     print(f"JS      : [{js}][{js_total}]")
     print(f"TOTAL   : [{total}][{T_Total}]")
     print(f"Days    :  #{Days}")
+
+    print("\n\n" + "-" * 40 + "\n✅ **Copied to Clipboard!** 📋\n")
+
 
     clipboard.copy(
         # "\n"

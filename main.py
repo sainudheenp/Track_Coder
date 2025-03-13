@@ -20,7 +20,11 @@ def main():
 
 
     try:
-        print(f"Starting....{args.date}")
+        # print(f"Starting....{args.date}")
+        print("\n" + "=" * 50)
+        print(f"🚀 **Track Coder Automation Started** 📊")
+        print(f"📅 Date: **{yesterday}**")
+        print("=" * 50 + "\n")
 
 #date arg
 
