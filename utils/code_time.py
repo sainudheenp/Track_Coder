@@ -76,6 +76,8 @@ def get_code_time(yesterday):
         driver.execute_script("arguments[0].scrollIntoView();", graph)
         os.makedirs(os.path.dirname(os.path.expanduser("~/TrackCoder/screenshots/")), exist_ok=True)
         driver.save_screenshot(os.path.expanduser(f"~/TrackCoder/screenshots/{yesterday_url}.png"))
+        print(f"📸 Screenshot of the graph saved successfully: {os.path.expanduser(f"~/TrackCoder/screenshots/{yesterday_url}.png")}")
+
 
 
         site_act = aria_label_active.split(",")[1].strip().split()[0]
