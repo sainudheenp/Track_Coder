@@ -22,7 +22,7 @@ Track_Coder is a tool designed to automatically track and collect coding metrics
 ### Setup
 ```bash
 # Clone the repository
-git clone https://github.com/sainudheenp/Track_Coder.git
+git clone https://github.com/yourusername/Track_Coder.git
 cd Track_Coder
 
 # Install dependencies
@@ -87,7 +87,6 @@ Tracks active coding time from your preferred coding platforms.
 2. **Data Collection**:
    - Connects to MonkeyType to retrieve typing speed data.
    - Retrieves active code time from development platforms.
-   - Collects Lines of Code from Local Storage
 
 3. **Data Processing**:
    - Parses raw data into usable metrics.
@@ -113,7 +112,7 @@ Tracks active coding time from your preferred coding platforms.
    - Verify the websites haven't changed their UI structure.
 
 ### Support
-For issues, please open a ticket in the GitHub repository 
+For issues, please open a ticket in the GitHub repository or contact the maintainer at [maintainer-email@example.com].
 
 ---
 
