@@ -8,6 +8,7 @@ This project automates the process of gathering and recording coding-related sta
   <table>
     <tr>
       <td><img src="screenshots/asci.gif"></td>
+       <td><img  src="screenshots/slack.png"></td>
     </tr>
   </table>
 </div>
