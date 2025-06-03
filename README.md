@@ -7,7 +7,7 @@ This project automates the process of gathering and recording coding-related sta
 <div align="center">
   <table>
     <tr>
-      <td><img height="300" width="400" src="screenshots/asci.gif"></td>
+      <td><img src="screenshots/asci.gif"></td>
     </tr>
   </table>
 </div>
