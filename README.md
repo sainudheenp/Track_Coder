@@ -4,6 +4,15 @@
 
 This project automates the process of gathering and recording coding-related statistics, including typing speed (WPM), focus time, active code time, lines of code written, and daily tracking. It scrapes data from various sources like Software.com and MonkeyType using Selenium and Python, then saves the collected data into an Excel sheet for detailed reporting.
 
+<div align="center">
+  <table>
+    <tr>
+      <td><img height="300" width="400" src="screenshots/asci.gif"></td>
+    </tr>
+  </table>
+</div>
+
+
 ## Features
 
 - **Generate Excel Sheet**: Creates an Excel file to log daily statistics for easy tracking and reporting.

@@ -49,7 +49,7 @@ def get_wpm():
             return avg_wpm
 
     except Exception as error:
-        print(f"WPM Fetch error: {error}")
+        print(f"WPM Fetch error: {str(error)}")
         sys.exit(1)
 
 
