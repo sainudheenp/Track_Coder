@@ -4,14 +4,6 @@
 
 This project automates the process of gathering and recording coding-related statistics, including typing speed (WPM), focus time, active code time, lines of code written, and daily tracking. It scrapes data from various sources like Software.com and MonkeyType using Selenium and Python, then saves the collected data into an Excel sheet for detailed reporting.
 
-<div align="center">
-  <table>
-    <tr>
-      <td><img src="screenshots/asci.gif"></td>
-       <td><img  src="screenshots/slack.png"></td>
-    </tr>
-  </table>
-</div>
 
 
 ## Features
@@ -33,6 +25,19 @@ For Local Setup:
     VSCode Extensions:
                 TrackMe  - v3.1.0
                 Codetime - v2.8.1
+
+
+<div align="center">
+  <table>
+    <tr >
+      <td><img src="screenshots/asci.gif"></td>
+    </tr>
+    <tr>
+         <td><img  src="screenshots/slack.png"></td>
+
+    </tr>
+  </table>
+</div>
 
 
 
