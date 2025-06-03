@@ -6,6 +6,7 @@ This project automates the process of gathering and recording coding-related sta
 
 
 
+
 ## Features
 
 - **Generate Excel Sheet**: Creates an Excel file to log daily statistics for easy tracking and reporting.
@@ -26,20 +27,14 @@ For Local Setup:
                 TrackMe  - v3.1.0
                 Codetime - v2.8.1
 
-
 <div align="center">
   <table>
     <tr >
       <td><img src="screenshots/asci.gif"></td>
-    </tr>
-    <tr>
-         <td><img  src="screenshots/slack.png"></td>
-
+     <td><img  src="screenshots/slack.png"></td>
     </tr>
   </table>
 </div>
-
-
 
 For Docker Setup:
 
