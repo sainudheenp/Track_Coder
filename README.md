@@ -17,6 +17,14 @@ This project automates the process of gathering and recording coding-related sta
 - **Total Coding Days**: Logs consecutive days of activity, helping track daily progress over time.
 - **Copy to Clipboard**: Copies the generated values, such as daily metrics or summaries, directly to the clipboard for easy sharing or further processing.
 
+<div align="center">
+  <table>
+    <tr >
+      <td><img src="screenshots/asci.gif"></td>
+     <td><img  src="screenshots/slack.png"></td>
+    </tr>
+  </table>
+</div>
 
 Prerequisites
 For Local Setup:
@@ -27,14 +35,7 @@ For Local Setup:
                 TrackMe  - v3.1.0
                 Codetime - v2.8.1
 
-<div align="center">
-  <table>
-    <tr >
-      <td><img src="screenshots/asci.gif"></td>
-     <td><img  src="screenshots/slack.png"></td>
-    </tr>
-  </table>
-</div>
+
 
 For Docker Setup:
 
