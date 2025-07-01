@@ -1,6 +1,7 @@
 import openpyxl
 import os
 from datetime import datetime, timedelta
+from config_paths import OUTPUT_DIR
 
 
 
@@ -16,9 +17,9 @@ def xl_rw(Focus , Wpm ,CT ,ACT,HTML , CSS ,JS,TOTAL ,yesterday):
             date = yesterday.strftime("%Y-%m-%d")
 
 
-            Xl_path = os.path.expanduser("~/TrackCoder/trackcoder.xlsx")
+            Xl_path = os.path.join(OUTPUT_DIR, "trackcoder.xlsx")
 
-            os.makedirs(os.path.dirname(Xl_path), exist_ok=True)
+            os.makedirs(OUTPUT_DIR, exist_ok=True)
 
             if os.path.exists(Xl_path):
              workbook = openpyxl.load_workbook(Xl_path)
