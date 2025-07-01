@@ -1,0 +1,46 @@
+# Git files
+.git
+.gitignore
+
+# Python cache
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.cache
+.pytest_cache
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Documentation and examples
+README.md
+Doc.md
+flowchart.md
+*.svg
+*.drawio
+
+# Test files
+tests/
+
+# Environment files (should be mounted as volume)
+.env
+
+# Output files (will be generated in container)
+trackcoder.xlsx
+screenshots/
+output/
+
+# Temporary files
+*.log
+*.tmp

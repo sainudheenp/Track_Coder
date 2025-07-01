@@ -1,0 +1,27 @@
+services:
+  track_coder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: track_coder
+    environment:
+      # You can override these in a .env file or set them here
+      - userEmail_monkey=${userEmail_monkey}
+      - password_monkey=${password_monkey}
+      - userEmail_code_time=${userEmail_code_time}
+      - password_code_time=${password_code_time}
+      - DISPLAY=:99
+      # Set paths for Docker environment
+      - TRACK_CODER_BASE_DIR=/app
+      # Disable interactive mode for Docker
+      - TRACK_CODER_INTERACTIVE=false
+    volumes:
+      # Mount output directory to persist Excel files and screenshots
+      - ./output:/app/output
+      - ./screenshots:/app/screenshots
+      # Optionally mount .env file
+      - ./.env:/app/.env:ro
+    # Add shm_size for Chrome to avoid crashes
+    shm_size: '2gb'
+    # You can pass date argument like: docker compose run track_coder -date 2025-01-01
+    command: []

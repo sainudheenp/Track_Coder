@@ -39,9 +39,11 @@ For Local Setup:
 
 For Docker Setup:
 
-    .
+    Docker & Docker Compose
 
 ## Installation
+
+### Local Setup
 
    Clone the repository:
 
@@ -54,6 +56,45 @@ Set up the environment: Create a virtual environment and install dependencies:
     python -m venv myenv
     source myenv/bin/activate
     pip install -r requirements.txt
+
+### Docker Setup
+
+   Clone the repository:
+
+     git clone https://github.com/sainudheenp/track_coder.git
+     cd track_coder
+
+   Create environment file:
+
+     cp .env.example .env
+     # Edit .env file with your actual credentials
+
+   Build and run with Docker Compose:
+
+     # Build the Docker image
+     docker compose build
+     
+     # Run the application
+     docker compose run --rm track_coder
+     
+     # Run with custom date
+     docker compose run --rm track_coder -date 2025-01-01
+
+   Or build and run manually with Docker:
+
+     # Build the image
+     docker build -t track_coder .
+     
+     # Create output directories
+     mkdir -p output screenshots
+     
+     # Run the container
+     docker run --rm -v $(pwd)/output:/app/output -v $(pwd)/screenshots:/app/screenshots --env-file .env track_coder
+     
+     # Run with custom date
+     docker run --rm -v $(pwd)/output:/app/output -v $(pwd)/screenshots:/app/screenshots --env-file .env track_coder -date 2025-01-01
+
+   **Note:** The Docker version runs in non-interactive mode, so it will use calculated focus times without prompting for user input.
 
 
 Configure Environment Variables: Create a .env file in the root directory with the following variables:
@@ -91,16 +132,41 @@ for custom date :
 
 
 
+### Running with Docker
+
+To run with Docker Compose:
+
+     docker compose run --rm track_coder
+
+For custom date with Docker:
+
+     docker compose run --rm track_coder -date 2025-01-01
+
+## Output Paths
+
+### Local Setup
+
 Excel Output Path
 
 The collected data will be saved in an Excel file located at:
 
 
-    /username/trackcoder/output.xlsx
+    /username/trackcoder/trackcoder.xlsx
 
 Screenshot Output Path:
 
     /username/trackcoder/screenshots
+
+### Docker Setup
+
+Excel Output Path:
+The collected data will be saved in an Excel file located at:
+
+    ./output/trackcoder.xlsx
+
+Screenshot Output Path:
+
+    ./screenshots/
 
 
 

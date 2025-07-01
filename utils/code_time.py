@@ -12,6 +12,7 @@ load_dotenv()
 import time
 from utils.get_driver import get_driver
 from .get_driver import get_driver
+from config_paths import SCREENSHOTS_DIR, INTERACTIVE_MODE
 
 
 Focus = "00:00"
@@ -74,9 +75,10 @@ def get_code_time(yesterday):
         #save_screenshot
         graph=driver.find_element(By.CLASS_NAME , "highcharts-background")
         driver.execute_script("arguments[0].scrollIntoView();", graph)
-        os.makedirs(os.path.dirname(os.path.expanduser("~/TrackCoder/screenshots/")), exist_ok=True)
-        driver.save_screenshot(os.path.expanduser(f"~/TrackCoder/screenshots/{yesterday_url}.png"))
-        print(f"📸 Screenshot of the graph saved successfully: {os.path.expanduser(f"~/TrackCoder/screenshots/{yesterday_url}.png")} \n")
+        os.makedirs(SCREENSHOTS_DIR, exist_ok=True)
+        screenshot_path = os.path.join(SCREENSHOTS_DIR, f"{yesterday_url}.png")
+        driver.save_screenshot(screenshot_path)
+        print(f"📸 Screenshot of the graph saved successfully: {screenshot_path} \n")
 
 
 
@@ -118,14 +120,14 @@ def get_code_time(yesterday):
         fc_minutes = fc_total_minutes % 60
 
         print(f"Your Focus time Calculatd by Track_Coder is : {fc_hours}:{fc_minutes}")
-        q = input("Would you like to modify this time? (Y/N): ")
-
-        if (q=="Y" or q=="y"):
-            fc_hours , fc_minutes =input("Please enter your focus hours and minutes : ").split(":")
-            # if(fc_hours  18 or fc_minutes>60):
-            #     print("Try again")
-            #     fc_hours , fc_minutes =input("enter your focus hours and minutes (eg. 8:20 ) :  ").split(":")
-
+        
+        if INTERACTIVE_MODE:
+            q = input("Would you like to modify this time? (Y/N): ")
+            if (q=="Y" or q=="y"):
+                fc_hours , fc_minutes =input("Please enter your focus hours and minutes : ").split(":")
+        else:
+            # In non-interactive mode (Docker), use calculated values
+            print("Running in non-interactive mode, using calculated focus time.")
 
 
         Focus=f"{fc_hours:01}:{fc_minutes:02}"
