@@ -13,10 +13,9 @@ from .get_driver import get_driver
 
 load_dotenv()
 
-print("Driver installing...")
-driver =  get_driver()
-
 def get_wpm():
+    print("Driver installing...")
+    driver = get_driver()
     try:
             driver.get("https://monkeytype.com/account")
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "rejectAll")))
@@ -50,8 +49,7 @@ def get_wpm():
 
     except Exception as error:
         print(f"WPM Fetch error: {str(error)}")
-        sys.exit(1)
-
+        return 35  # Return default value instead of sys.exit
 
 
     finally:

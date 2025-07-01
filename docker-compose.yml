@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   track_coder:
     build:
@@ -25,5 +23,5 @@ services:
       - ./.env:/app/.env:ro
     # Add shm_size for Chrome to avoid crashes
     shm_size: '2gb'
-    # You can pass date argument like: docker-compose run track_coder -date 2025-01-01
+    # You can pass date argument like: docker compose run track_coder -date 2025-01-01
     command: []

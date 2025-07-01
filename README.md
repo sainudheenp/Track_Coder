@@ -64,27 +64,37 @@ Set up the environment: Create a virtual environment and install dependencies:
      git clone https://github.com/sainudheenp/track_coder.git
      cd track_coder
 
+   Create environment file:
+
+     cp .env.example .env
+     # Edit .env file with your actual credentials
+
    Build and run with Docker Compose:
 
      # Build the Docker image
-     docker-compose build
+     docker compose build
      
      # Run the application
-     docker-compose run track_coder
+     docker compose run --rm track_coder
      
      # Run with custom date
-     docker-compose run track_coder -date 2025-01-01
+     docker compose run --rm track_coder -date 2025-01-01
 
    Or build and run manually with Docker:
 
      # Build the image
      docker build -t track_coder .
      
+     # Create output directories
+     mkdir -p output screenshots
+     
      # Run the container
      docker run --rm -v $(pwd)/output:/app/output -v $(pwd)/screenshots:/app/screenshots --env-file .env track_coder
      
      # Run with custom date
      docker run --rm -v $(pwd)/output:/app/output -v $(pwd)/screenshots:/app/screenshots --env-file .env track_coder -date 2025-01-01
+
+   **Note:** The Docker version runs in non-interactive mode, so it will use calculated focus times without prompting for user input.
 
 
 Configure Environment Variables: Create a .env file in the root directory with the following variables:
@@ -126,11 +136,11 @@ for custom date :
 
 To run with Docker Compose:
 
-     docker-compose run track_coder
+     docker compose run --rm track_coder
 
 For custom date with Docker:
 
-     docker-compose run track_coder -date 2025-01-01
+     docker compose run --rm track_coder -date 2025-01-01
 
 ## Output Paths
 
