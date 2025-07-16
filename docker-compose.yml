@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  track-coder:
+    build: .
+    container_name: track-coder
+    environment:
+      - DISPLAY=:99
+    env_file:
+      - .env
+    volumes:
+      - ./output:/app/output
+      - ./screenshots:/app/screenshots
+    command: ["python", "main.py"]
+    restart: unless-stopped
+    
+  # Optional: Add a service to run with custom date
+  track-coder-custom:
+    build: .
+    container_name: track-coder-custom
+    environment:
+      - DISPLAY=:99
+    env_file:
+      - .env
+    volumes:
+      - ./output:/app/output
+      - ./screenshots:/app/screenshots
+    # Override command to run with custom date (example)
+    # command: ["python", "main.py", "-date", "2025-01-01"]
+    profiles:
+      - manual

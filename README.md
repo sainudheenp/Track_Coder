@@ -39,9 +39,12 @@ For Local Setup:
 
 For Docker Setup:
 
-    .
+    Docker and Docker Compose
+    Create a .env file with your credentials (see Configuration section)
 
 ## Installation
+
+### Local Setup
 
    Clone the repository:
 
@@ -55,6 +58,22 @@ Set up the environment: Create a virtual environment and install dependencies:
     source myenv/bin/activate
     pip install -r requirements.txt
 
+### Docker Setup
+
+   Clone the repository:
+
+     git clone https://github.com/sainudheenp/track_coder.git
+     cd track_coder
+
+Build the Docker image:
+
+     docker build -t track-coder .
+
+Or use Docker Compose:
+
+     docker-compose build
+
+## Configuration
 
 Configure Environment Variables: Create a .env file in the root directory with the following variables:
 
@@ -77,7 +96,9 @@ Configure Environment Variables: Create a .env file in the root directory with t
 
 
 
-Running the Project Locally
+## Running the Project
+
+### Running Locally
 
 To run the project locally, execute the following:
 
@@ -86,6 +107,26 @@ To run the project locally, execute the following:
 for custom date :
 
      python main.py -date 2025-01-01
+
+### Running with Docker
+
+To run with Docker:
+
+     docker run --env-file .env -v $(pwd)/output:/app/output -v $(pwd)/screenshots:/app/screenshots track-coder
+
+For custom date:
+
+     docker run --env-file .env -v $(pwd)/output:/app/output -v $(pwd)/screenshots:/app/screenshots track-coder python main.py -date 2025-01-01
+
+### Running with Docker Compose
+
+To run with Docker Compose:
+
+     docker-compose up
+
+For custom date, modify the docker-compose.yml file or use the manual profile:
+
+     docker-compose --profile manual up track-coder-custom
 
 
 

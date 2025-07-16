@@ -1,0 +1,42 @@
+# Git files
+.git
+.gitignore
+
+# Documentation files
+*.md
+*.svg
+*.drawio.svg
+flowchart.md
+
+# Test files
+tests/
+
+# Output files
+output/
+screenshots/
+*.xlsx
+
+# Cache and temporary files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.pytest_cache/
+
+# Virtual environments
+venv/
+myenv/
+env/
+ENV/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
