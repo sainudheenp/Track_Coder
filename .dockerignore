@@ -7,6 +7,11 @@
 *.svg
 *.drawio.svg
 flowchart.md
+DOCKER.md
+
+# Shell scripts (for local use)
+setup.sh
+run.sh
 
 # Test files
 tests/
