@@ -1,14 +1,31 @@
-python-dotenv
-
-selenium == 4.23.0
-
-openpyxl
-
-pandas
-
-webdriver-manager
-webdriver_manager
-clipboard
-
-# join &pass time
-# if ct , wpm then open and write excel
+attrs==25.3.0
+certifi==2025.4.26
+charset-normalizer==3.4.2
+clipboard==0.0.4
+et_xmlfile==2.0.0
+h11==0.16.0
+idna==3.10
+numpy==2.2.6
+openpyxl==3.1.5
+outcome==1.3.0.post0
+packaging==25.0
+pandas==2.2.3
+pillow==12.0.0
+pyperclip==1.9.0
+PySocks==1.7.1
+python-dateutil==2.9.0.post0
+python-dotenv==1.1.0
+pytz==2025.2
+requests==2.32.3
+selenium==4.23.0
+six==1.17.0
+sniffio==1.3.1
+sortedcontainers==2.4.0
+trio==0.30.0
+trio-websocket==0.12.2
+typing_extensions==4.9.0
+tzdata==2025.2
+urllib3==2.4.0
+webdriver-manager==4.0.2
+websocket-client==1.8.0
+wsproto==1.2.0
