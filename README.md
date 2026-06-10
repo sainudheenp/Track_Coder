@@ -101,8 +101,7 @@ The collected data will be saved in an Excel file located at:
 Screenshot Output Path:
 
     /username/trackcoder/screenshots
-
-
+outdated
 
 
 
