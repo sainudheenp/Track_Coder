@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "track-coder"
+version = "2.0.0"
+description = "Local-first coding metrics, streaks, goals, Excel and Google Sheets reports"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Track Coder contributors"}]
+dependencies = [
+  "openpyxl>=3.1,<4",
+  "python-dotenv>=1.0,<2",
+  "selenium>=4.23,<5",
+  "webdriver-manager>=4.0,<5",
+  "pyperclip>=1.9,<2",
+]
+
+[project.optional-dependencies]
+sheets = [
+  "gspread>=6.0,<7",
+  "google-auth>=2.29,<3",
+]
+dev = ["pytest>=8,<9", "ruff>=0.8,<1"]
+
+[project.scripts]
+trackcoder = "trackcoder.cli:entrypoint"
+
+[tool.setuptools.packages.find]
+include = ["trackcoder*", "utils*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-q"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]

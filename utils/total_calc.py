@@ -1,56 +1,27 @@
-import pandas as pd
-import os
+"""All-time totals using normalized workbook records (no pandas required)."""
+
+from trackcoder.config import Settings
+from trackcoder.storage import WorkbookStore
+from trackcoder.timeutils import format_duration, parse_duration
 
 
-# calulate total minutes from xl sheet sting value
 def time_to_mins(time_string):
-    if isinstance(time_string,str):
-        hours,mins = map(int , time_string.split(':'))
-    else :
-        hours,mins=0,0
-    # print("tm",hours * 60 + mins)
-    return hours * 60 + mins
+    if time_string is None or time_string == "":
+        return 0
+    return parse_duration(time_string)
 
-# printing and total min into hours ,mins
+
 def minutes_time(total_time):
-    hours = total_time // 60
-    minutes = total_time % 60
-    # print("mt",hours , minutes)
-    return f"{hours:02}:{minutes:02}"
-
-
+    return format_duration(total_time)
 
 
 def total_calc():
-    try:
-            df =pd.read_excel(os.path.expanduser("~/TrackCoder/trackcoder.xlsx"))
-            # df =pd.read_excel(os.path.expanduser("~/TrackCoder/trackcodersafever.xlsx"))
-
-            html_total = int(round(df["HTML"].sum(),0))
-            css_total = int(round(df["CSS"].sum(),0))
-            js_total = int(round(df["JS"].sum(),0))
-            T_Total  = html_total + css_total + js_total
-
-
-
-            # print(html_total , js_total ,css_total)
-            total_mins = df["CT"].apply(time_to_mins).sum()
-            # print("total mins ct",total_mins)
-            CT_TOTAL = minutes_time(total_mins)
-            # print("CT_TOTAL",CT_TOTAL)
-
-            total_mins = df["ACT"].apply(time_to_mins).sum()
-            ACT_TOTAL = minutes_time(total_mins)
-            # print("ACT_TOTAL",ACT_TOTAL)
-
-            total_mins = df["Focus"].apply(time_to_mins).sum()
-            Focus_TOTAL = minutes_time(total_mins)
-
-
-
-            return html_total ,css_total, js_total, CT_TOTAL, ACT_TOTAL,Focus_TOTAL , T_Total
-    except Exception as e :
-        print(" calc err", e)
-
-
-# total_caclc()
+    settings = Settings.from_env()
+    records = WorkbookStore(settings.workbook_path, backups=False).all()
+    html = sum(record.html for record in records)
+    css = sum(record.css for record in records)
+    javascript = sum(record.javascript for record in records)
+    code = format_duration(sum(record.code_time_minutes for record in records))
+    active = format_duration(sum(record.active_code_time_minutes for record in records))
+    focus = format_duration(sum(record.focus_minutes for record in records))
+    return html, css, javascript, code, active, focus, html + css + javascript

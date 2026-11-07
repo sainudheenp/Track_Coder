@@ -1,161 +1,104 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from datetime import datetime, timedelta
+"""Software.com code-time provider with explicit waits and safe cleanup."""
+
+from __future__ import annotations
+
 import os
 import sys
-from dotenv import load_dotenv
-load_dotenv()
-import time
-from utils.get_driver import get_driver
+from pathlib import Path
+
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+
+from trackcoder.config import Settings
+from trackcoder.errors import CollectionError, ConfigurationError, ValidationError
+from trackcoder.software import calculate_software_metrics, minutes_from_aria
+from trackcoder.timeutils import format_duration, parse_date, parse_duration
+
 from .get_driver import get_driver
 
 
-Focus = "00:00"
-ACT = "00:00"
-CT = "00:00"
+def _focus_from_prompt(calculated: int) -> int:
+    if not sys.stdin.isatty():
+        return calculated
+    suggestion = format_duration(calculated)
+    while True:
+        answer = input(f"Focus time [{suggestion}] (Enter to accept, or type 02:30): ").strip()
+        if not answer:
+            return calculated
+        try:
+            return parse_duration(answer, field="focus")
+        except ValidationError as exc:
+            print(exc)
 
-def get_code_time(yesterday):
-    driver = get_driver()
 
-    # today = datetime.now()
-    # yesterday = today - timedelta(days=1)
-    # print(yesterday)
-    # print("hllo")
-
-    yesterday = datetime.strptime(yesterday,"%Y-%m-%d")
-    yesterday_day = yesterday.strftime('%A')
-    yesterday_url = yesterday.strftime("%Y-%m-%d")
-    # print(yesterday_day , yesterday_url)
-
+def get_code_time(
+    yesterday: str, *, focus_override: int | None = None, interactive: bool = True,
+    timeout: int = 20, headless: bool | None = None, screenshot_dir: str | Path | None = None,
+) -> tuple[str, str, str]:
+    day = parse_date(yesterday)
+    email = os.getenv("userEmail_code_time")
+    password = os.getenv("password_code_time")
+    if not email or not password:
+        raise ConfigurationError(
+            "Software.com credentials are missing. Set userEmail_code_time and "
+            "password_code_time, or use --skip-code-time."
+        )
+    settings = Settings.from_env()
+    destination = Path(screenshot_dir).expanduser() if screenshot_dir else settings.screenshot_dir
+    driver = None
     try:
-        driver.get(f"https://app.software.com/code_time?week_of={yesterday_url}")
+        driver = get_driver(headless=headless, timeout=timeout)
+        wait = WebDriverWait(driver, timeout)
+        driver.get(f"https://app.software.com/code_time?week_of={day.isoformat()}")
+        wait.until(lambda current: (
+            current.find_elements(By.NAME, "email")
+            or current.find_elements(By.CLASS_NAME, "highcharts-background")
+        ))
+        if driver.find_elements(By.NAME, "email"):
+            driver.find_element(By.ID, "email").send_keys(email)
+            driver.find_element(By.ID, "password").send_keys(password)
+            driver.find_element(By.CLASS_NAME, "btn-primary").click()
 
+        day_abbr = day.strftime("%a")
+        active_xpath = (
+            f'//*[contains(@aria-label, "{day_abbr},") and '
+            'contains(@aria-label, "Active Code Time")]'
+        )
+        code_xpath = (
+            f'//*[contains(@aria-label, "{day_abbr},") and '
+            'contains(@aria-label, "Code Time") and not(contains(@aria-label, "Active Code Time"))]'
+        )
+        active_element = wait.until(EC.presence_of_element_located((By.XPATH, active_xpath)))
+        code_element = wait.until(EC.presence_of_element_located((By.XPATH, code_xpath)))
+        active_minutes = minutes_from_aria(active_element.get_attribute("aria-label"))
+        code_minutes = minutes_from_aria(code_element.get_attribute("aria-label"))
+        metrics = calculate_software_metrics(
+            active_minutes, code_minutes, focus_override=focus_override,
+        )
+        focus_minutes = metrics.focus_minutes
+        if focus_override is None and interactive:
+            focus_minutes = _focus_from_prompt(focus_minutes)
 
-
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "email")))
-
-        userName_field = driver.find_element(By.ID, "email")
-        password_field = driver.find_element(By.ID, "password")
-        signIn_btn = driver.find_element(By.CLASS_NAME, "btn-primary")
-
-        userName_field.send_keys(os.getenv("userEmail_code_time"))
-        password_field.send_keys(os.getenv("password_code_time"))
-        signIn_btn.click()
-
-
-        day_map = {
-            'Monday': 'Mon',
-            'Tuesday': 'Tue',
-            'Wednesday': 'Wed',
-            'Thursday': 'Thu',
-            'Friday': 'Fri',
-            'Saturday': 'Sat',
-            'Sunday': 'Sun'
-        }
-        yesterday_abbr = day_map[yesterday_day]
-
-        Focus = "00:00"
-        ACT = "00:00"
-        CT = "00:00"
-
-
-
-
-        time.sleep(3)
-
-        xpath_active = f'//*[contains(@aria-label, "{yesterday_abbr},") and contains(@aria-label, "Active Code Time")]'
-        element_active = driver.find_element(By.XPATH, xpath_active)
-        aria_label_active = element_active.get_attribute('aria-label')
-
-        #save_screenshot
-        graph=driver.find_element(By.CLASS_NAME , "highcharts-background")
-        driver.execute_script("arguments[0].scrollIntoView();", graph)
-        os.makedirs(os.path.dirname(os.path.expanduser("~/TrackCoder/screenshots/")), exist_ok=True)
-        driver.save_screenshot(os.path.expanduser(f"~/TrackCoder/screenshots/{yesterday_url}.png"))
-        print(f"📸 Screenshot of the graph saved successfully: {os.path.expanduser(f"~/TrackCoder/screenshots/{yesterday_url}.png")} \n")
-
-
-
-        site_act = aria_label_active.split(",")[1].strip().split()[0]
-        active_code_time = round(float(site_act.rstrip('.')), 2)
-
-        hours_active = int(active_code_time//60)
-        minutes_active = int(active_code_time % 60)
-
-
-        #  Code Time
-        xpath_code_time = f'//*[contains(@aria-label, "{yesterday_abbr},") and contains(@aria-label, "Code Time")]'
-        element_code_time = driver.find_element(By.XPATH, xpath_code_time)
-        aria_label_code_time = element_code_time.get_attribute('aria-label')
-
-        # Extract Code Time
-        site_ct = aria_label_code_time.split(",")[1].strip().split()[0]
-        code_time = round(float(site_ct.rstrip('.')), 2)
-
-        ct_hours = int(code_time // 60)
-        minutes_ct = int(code_time%60)
-
-        # Calculate Total Time (Active Code Time + Code Time)
-        total_minutes = (hours_active * 60 + minutes_active) + (ct_hours * 60 + minutes_ct)
-        total_hours = total_minutes // 60
-        remaining_minutes = total_minutes % 60
-        # print(f"CT      : {total_hours:01}:{remaining_minutes:02}")
-        # print("total minutes",total_minutes)
-
-
-        # focus
-        if total_minutes != 0 :
-                fc_total_minutes = total_minutes + 60
-        else :
-                fc_total_minutes = total_minutes
-
-
-        fc_hours = fc_total_minutes // 60
-        fc_minutes = fc_total_minutes % 60
-
-        print(f"Your Focus time Calculatd by Track_Coder is : {fc_hours}:{fc_minutes}")
-        q = input("Would you like to modify this time? (Y/N): ")
-
-        if (q=="Y" or q=="y"):
-            fc_hours , fc_minutes =input("Please enter your focus hours and minutes : ").split(":")
-            # if(fc_hours  18 or fc_minutes>60):
-            #     print("Try again")
-            #     fc_hours , fc_minutes =input("enter your focus hours and minutes (eg. 8:20 ) :  ").split(":")
-
-
-
-        Focus=f"{fc_hours:01}:{fc_minutes:02}"
-        ACT=f"{hours_active:01}:{minutes_active:02}"
-        CT=f"{total_hours:01}:{remaining_minutes:02}"
-        # print(f"{fc_hours:01}:{fc_minutes:02}")
-
-
-
-        #print values
-
-        # print(f"Focus   : {Focus}")
-        # print(f"ACT     : {ACT}")
-        # print(f"CT      : {CT}")
-
-
-
-
-    except Exception as e:
-        # print(f"Focus   : 00:00")
-        print("code time err",e)
-        sys.exit(1)
-
+        graph = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "highcharts-background")))
+        driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", graph)
+        destination.mkdir(parents=True, exist_ok=True)
+        screenshot_path = destination / f"{day.isoformat()}.png"
+        if not driver.save_screenshot(str(screenshot_path)):
+            raise CollectionError(f"Chrome did not save the screenshot to {screenshot_path}.")
+        print(f"✓ Screenshot saved: {screenshot_path}")
+        return (
+            format_duration(focus_minutes),
+            format_duration(metrics.active_code_time_minutes),
+            format_duration(metrics.code_time_minutes),
+        )
+    except (ConfigurationError, CollectionError):
+        raise
+    except Exception as exc:
+        raise CollectionError(f"Could not collect Software.com code time for {day}: {exc}") from exc
     finally:
-        driver.quit()
-
-    return Focus , ACT ,CT
-
-# get_code_time()
-
-
-
-
+        if driver is not None:
+            try:
+                driver.quit()
+            except Exception:
+                pass
