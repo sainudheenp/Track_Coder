@@ -1,0 +1,3 @@
+-r requirements.txt
+gspread>=6.0,<7
+google-auth>=2.29,<3

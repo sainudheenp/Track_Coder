@@ -1,0 +1,28 @@
+services:
+  trackcoder:
+    build: .
+    init: true
+    shm_size: 512mb
+    environment:
+      TRACKCODER_DATA_DIR: /data
+      TRACKCODER_WORKBOOK: /data/trackcoder.xlsx
+      TRACKCODER_SCREENSHOT_DIR: /data/screenshots
+      TRACKCODER_HEADLESS: "true"
+      CHROME_BINARY: /usr/bin/chromium
+      CHROME_DRIVER_PATH: /usr/bin/chromedriver
+      TRACKME_PROGRESS_FILE: /trackme/daily-progress-tracker.json.b64
+      userEmail_monkey: ${userEmail_monkey:-}
+      password_monkey: ${password_monkey:-}
+      userEmail_code_time: ${userEmail_code_time:-}
+      password_code_time: ${password_code_time:-}
+      GOOGLE_SHEET_ID: ${GOOGLE_SHEET_ID:-}
+      GOOGLE_SHEETS_CREDENTIALS_FILE: ${GOOGLE_SHEETS_CREDENTIALS_FILE:-}
+      GOOGLE_SHEETS_WORKSHEET: ${GOOGLE_SHEETS_WORKSHEET:-Track Coder}
+    volumes:
+      - trackcoder-data:/data
+      # Example for local TrackMe data (set TRACKME_HOST_DIR first):
+      # - ${TRACKME_HOST_DIR:-/dev/null}:/trackme:ro
+    command: ["collect", "--non-interactive", "--skip-loc"]
+
+volumes:
+  trackcoder-data:

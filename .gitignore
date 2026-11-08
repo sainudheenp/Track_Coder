@@ -1,10 +1,31 @@
-myenv
+# Secrets and local configuration
 .env
-trackcoder.xlsx
-./__pycache__
-__pycache__
-Gchrome/utils/__pycache__
-Gchrome/utils/__pycache__/
-.Gchrome/utils/__pycache__/
+.env.*
+!.env.example
+*.pem
+service-account*.json
 
-./trackcoder.xlsx
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+myenv/
+
+# Generated metrics and reports
+trackcoder.xlsx
+dashboard.html
+*.csv
+backups/
+weekly_screenshots_data.xlsx
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store

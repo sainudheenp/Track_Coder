@@ -1,7 +1,20 @@
+"""Explicit workbook copy helper retained for older scripts."""
+
+from __future__ import annotations
+
 import shutil
-import os
-def copy_past() :
-    try :
-        shutil.copy(os.path.expanduser("~/TrackCoder/trackcoder.xlsx"),os.getcwd())
-    except Exception as e:
-        print("C_File Error")
+from pathlib import Path
+
+from trackcoder.config import Settings
+
+
+def copy_past(destination=None):
+    source = Settings.from_env().workbook_path
+    target = Path(destination or Path.cwd()).expanduser().resolve()
+    if target.is_dir():
+        target = target / source.name
+    target.parent.mkdir(parents=True, exist_ok=True)
+    if source == target:
+        return target
+    shutil.copy2(source, target)
+    return target

@@ -1,124 +1,40 @@
-# Track_Coder Documentation
+# Track Coder technical guide
 
-## Table of Contents
-1. [Project Overview](#project-overview)
-2. [Installation](#installation)
-3. [Configuration](#configuration)
-4. [Usage](#usage)
-5. [Modules and Components](#modules-and-components)
-6. [Workflow](#workflow)
-7. [Troubleshooting](#troubleshooting)
+The user-facing installation, command, Docker, scheduling, and Google Sheets guides live in [README.md](README.md). The execution diagram and reliability rules live in [flowchart.md](flowchart.md).
 
-## Project Overview
-Track_Coder is a tool designed to automatically track and collect coding metrics to help developers understand their coding habits and productivity. The tool fetches data from various sources including coding activity time and typing speed measurements.
+## Data model
 
-## Installation
+`DailyMetrics` is the single normalized representation used by storage, analytics, and exports. Dates are Python `date` objects; durations are non-negative integer minutes; missing WPM is `None`; JavaScript includes JSX. `total_lines` and `is_active` are derived rather than trusted from stale workbook totals.
 
-### Prerequisites
-- Python 3.6+
-- Chrome browser (for web scraping)
-- Internet connection
+Excel remains the source of truth. Its original ten columns are supported, with an optional `Notes` column. `WorkbookStore` deduplicates by date on reads (last row wins), updates existing dates, and consolidates duplicate rows when that date is written. All writes go through a temporary file in the destination directory followed by `os.replace`.
 
-### Setup
+## Analytics definitions
+
+- **Active day:** non-zero focus, CT, ACT, or changed lines. WPM alone is insufficient.
+- **Current streak:** consecutive active days ending on the report date, with one grace day.
+- **Best streak:** longest consecutive active-day sequence across all available records.
+- **Previous period:** an equally sized period immediately before the selected period.
+- **Average WPM:** unweighted mean of records with a real WPM observation.
+- **Goal targets:** daily focus is multiplied by elapsed days; weekly CT/lines targets are multiplied by elapsed days / 7.
+
+The HTML dashboard is generated locally with escaped text and inline CSS/SVG. It includes no analytics scripts, external fonts, CDNs, or runtime dependencies.
+
+## Provider boundaries
+
+Selenium code remains under `utils/` and is imported lazily by `collect`/`screenshots`. Pure parsing logic is under `trackcoder/software.py` and `trackcoder/trackme.py`, so it can be tested without network or browser access.
+
+Collection is provider-independent. Successful sources update their fields; failed sources preserve existing values. `--strict` changes this to all-or-nothing. Utilities raise domain exceptions instead of calling `sys.exit`, leaving exit policy to the CLI.
+
+## Integration safety
+
+Google Sheets sync is opt-in and requires a service account. It targets one dedicated worksheet and sends a single batch. CSV and JSON exports are atomic. Credentials and generated metrics are ignored by Git and Docker build context.
+
+## Verification
+
 ```bash
-# Clone the repository
-git clone https://github.com/sainudheenp/Track_Coder.git
-cd Track_Coder
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Configure environment variables
-cp .env.example .env
-# Edit .env with your credentials
+python -m pytest
+python -m compileall -q trackcoder utils main.py
+python main.py --help
 ```
 
-## Configuration
-The application uses environment variables for configuration. Create a `.env` file in the root directory with the following variables:
-
-```
-# MonkeyType credentials
-userEmail_monkey=your_email@example.com
-password_monkey=your_password
-
-# Other service credentials (if applicable)
-# SERVICE_USERNAME=username
-# SERVICE_PASSWORD=password
-
-# Configuration options
-# HEADLESS_BROWSER=True
-# CHROME_DRIVER_PATH=/path/to/chromedriver
-```
-
-## Usage
-
-### Running the Application
-```bash
-# Run the main application
-python main.py
-
-# Get typing speed metrics only
-python -c "from utils.typing_wpm import get_wpm; print(get_wpm())"
-```
-
-## Modules and Components
-
-### 1. Typing Speed Tracker
-This module connects to [MonkeyType](https://monkeytype.com) and retrieves your average typing speed (WPM).
-
-**Key Files:**
-- `utils/typing_wpm.py`: Contains functionality to fetch typing speed metrics.
-- `utils/get_driver.py`: Browser driver setup and configuration.
-
-### 2. Code Time Tracker
-Tracks active coding time from your preferred coding platforms.
-
-**Key Functions:**
-- Retrieves daily active code time
-- Formats and displays time in hours and minutes
-- Stores historical data
-
-## Workflow
-
-1. **Initialization**:
-   - The application loads environment variables and configurations.
-   - Sets up web drivers for browser automation.
-
-2. **Data Collection**:
-   - Connects to MonkeyType to retrieve typing speed data.
-   - Retrieves active code time from development platforms.
-   - Collects Lines of Code from Local Storage
-
-3. **Data Processing**:
-   - Parses raw data into usable metrics.
-   - Calculates derived statistics.
-
-4. **Reporting**:
-   - Displays metrics in a readable format.
-   - Optionally exports data to files or databases.
-
-## Troubleshooting
-
-### Common Issues
-1. **Driver Installation Issues**
-   - Ensure Chrome is installed on your system.
-   - Try manually specifying the Chrome driver path in your .env file.
-
-2. **Authentication Failures**
-   - Verify your credentials in the .env file.
-   - Check for any account login issues on the respective websites.
-
-3. **Data Not Loading**
-   - Check your internet connection.
-   - Verify the websites haven't changed their UI structure.
-
-### Support
-For issues, please open a ticket in the GitHub repository 
-
----
-
-## Contributing
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+Tests use temporary workbooks and mocked providers; they never require personal credentials, modify `~/TrackCoder`, or contact external services.
